@@ -1,0 +1,295 @@
+{
+  "globals": {
+    "CJ_DATASET_TITLE": [
+      "str",
+      "3D Basisbestrand"
+    ],
+    "CJ_GEOGRAPHIC_LOCATION": [
+      "str",
+      "The Netherlands"
+    ],
+    "INPUT_FOOTPRINT_SOURCE": [
+      "str",
+      "test-data/wippolder.gpkg"
+    ],
+    "INPUT_LAS_FILES": [
+      "str",
+      "test-data/wippolder.las"
+    ],
+    "OUTPUT_CITYJSON_DIR": [
+      "str",
+      "cityjson"
+    ],
+    "OUTPUT_CRS": [
+      "str",
+      "urn:ogc:def:crs:EPSG::7415"
+    ],
+    "OUTPUT_DB_CONNECTION": [
+      "str",
+      "PG:dbname=databasename port=5432 host=localhost user=username password=password1234"
+    ],
+    "OUTPUT_FORMAT": [
+      "str",
+      "GPKG"
+    ],
+    "OUTPUT_LAYERNAME_LOD11_2D": [
+      "str",
+      "LoD11_2D"
+    ],
+    "OUTPUT_LAYERNAME_LOD11_3D": [
+      "str",
+      "LoD11_3D"
+    ],
+    "OUTPUT_LAYERNAME_LOD12_2D": [
+      "str",
+      "LoD12_2D"
+    ],
+    "OUTPUT_LAYERNAME_LOD12_3D": [
+      "str",
+      "LoD12_3D"
+    ],
+    "OUTPUT_LAYERNAME_LOD13_2D": [
+      "str",
+      "LoD13_2D"
+    ],
+    "OUTPUT_LAYERNAME_LOD13_3D": [
+      "str",
+      "LoD13_3D"
+    ],
+    "OUTPUT_OBJ_DIR": [
+      "str",
+      "obj"
+    ],
+    "RUN_REFERENCE": [
+      "str",
+      "v2022"
+    ],
+    "TILE_ID": [
+      "str",
+      "1"
+    ],
+    "id_attribute": [
+      "str",
+      "identificatie"
+    ],
+    "line_detect__epsilon": [
+      "float",
+      0.4000000059604645
+    ],
+    "line_detect__min_points_lower": [
+      "int",
+      5
+    ],
+    "line_detect__min_points_upper": [
+      "int",
+      10
+    ],
+    "lod13__step_height": [
+      "float",
+      3.0
+    ],
+    "normal_estimate__k": [
+      "int",
+      8
+    ],
+    "optimisation_data_term": [
+      "int",
+      7
+    ],
+    "overwrite_output": [
+      "bool",
+      false
+    ],
+    "plane_detect__epsilon": [
+      "float",
+      0.20000000298023224
+    ],
+    "plane_detect__k": [
+      "int",
+      15
+    ],
+    "plane_detect__min_points": [
+      "int",
+      15
+    ],
+    "plane_detect__normal_angle": [
+      "float",
+      0.75
+    ],
+    "roof_elevation__percentile": [
+      "float",
+      0.699999988079071
+    ],
+    "skip_attribute_name": [
+      "str",
+      "kas_warenhuis"
+    ]
+  },
+  "nodes": {
+    "LASInPolygons": {
+      "connections": {
+        "ground_elevations": [
+          [
+            "NestedWriter",
+            "NestedWriter.globals"
+          ]
+        ],
+        "point_clouds": [
+          [
+            "NestedWriter",
+            "LASWriter.point_clouds"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "buf_polygons": false,
+        "polygons": false
+      },
+      "marked_outputs": {
+        "ground_elevations": false,
+        "ground_point_clouds": false,
+        "point_clouds": false
+      },
+      "parameters": {
+        "buffer": 1.0,
+        "building_class": 6,
+        "cellsize": 50.0,
+        "ground_class": 2,
+        "ground_percentile": 0.05000000074505806,
+        "las_filepaths": "{{INPUT_LAS_FILES}}"
+      },
+      "position": [
+        395.04998779296875,
+        192.2076416015625
+      ],
+      "type": [
+        "building-reconstruction",
+        "LASInPolygons"
+      ]
+    },
+    "NestedWriter": {
+      "marked_inputs": {
+        "LASWriter.point_clouds": false,
+        "NestedWriter.globals": false,
+        "OGRWriter.attributes": false,
+        "OGRWriter.geometries": false
+      },
+      "marked_outputs": {
+        "NestedWriter.timings": false
+      },
+      "parameters": {
+        "filepath": "crop_.json"
+      },
+      "position": [
+        815.0,
+        129.0
+      ],
+      "type": [
+        "Core",
+        "NestedFlowchart"
+      ]
+    },
+    "OGRLoader": {
+      "connections": {
+        "attributes": [
+          [
+            "NestedWriter",
+            "NestedWriter.globals"
+          ],
+          [
+            "NestedWriter",
+            "OGRWriter.attributes"
+          ]
+        ],
+        "linear_rings": [
+          [
+            "PolygonSimplifyGEOS",
+            "polygons"
+          ]
+        ]
+      },
+      "marked_outputs": {
+        "area": false,
+        "attributes": false,
+        "is_valid": false,
+        "line_strings": false,
+        "linear_rings": false
+      },
+      "parameters": {
+        "base_elevation": 0.0,
+        "filepath": "{{INPUT_FOOTPRINT_SOURCE}}",
+        "layer_id": 0
+      },
+      "position": [
+        420.0,
+        -28.0
+      ],
+      "type": [
+        "io-gdal",
+        "OGRLoader"
+      ]
+    },
+    "PolygonBufferGEOS": {
+      "connections": {
+        "offset_polygons": [
+          [
+            "LASInPolygons",
+            "buf_polygons"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "polygons": false
+      },
+      "marked_outputs": {
+        "offset_polygons": false
+      },
+      "parameters": {
+        "offset": 4.0
+      },
+      "position": [
+        260.0,
+        124.0
+      ],
+      "type": [
+        "io-gdal",
+        "PolygonBufferGEOS"
+      ]
+    },
+    "PolygonSimplifyGEOS": {
+      "connections": {
+        "simplified_polygons": [
+          [
+            "LASInPolygons",
+            "polygons"
+          ],
+          [
+            "NestedWriter",
+            "OGRWriter.geometries"
+          ],
+          [
+            "PolygonBufferGEOS",
+            "polygons"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "polygons": false
+      },
+      "marked_outputs": {
+        "simplified_polygons": false
+      },
+      "parameters": {
+        "tolerance": 0.009999999776482582
+      },
+      "position": [
+        299.97509765625,
+        83.5
+      ],
+      "type": [
+        "io-gdal",
+        "PolygonSimplifyGEOS"
+      ]
+    }
+  }
+}
