@@ -28,6 +28,30 @@
       "str",
       "1"
     ],
+    "CITYJSON_TRANSLATE_X": [
+      "float",
+      0.0
+    ],
+    "CITYJSON_TRANSLATE_Y": [
+      "float",
+      0.0
+    ],
+    "CITYJSON_TRANSLATE_Z": [
+      "float",
+      0.0
+    ],
+    "CITYJSON_SCALE_X": [
+      "float",
+      0.001
+    ],
+    "CITYJSON_SCALE_Y": [
+      "float",
+      0.001
+    ],
+    "CITYJSON_SCALE_Z": [
+      "float",
+      0.001
+    ],
     "line_detect__epsilon": [
       "float",
       0.4000000059604645
@@ -639,7 +663,7 @@
         "BuildArrFromLines"
       ]
     },
-    "CityJSONWriter": {
+    "CityJSONFeatureWriter": {
       "marked_inputs": {
         "attributes": false,
         "footprints": false,
@@ -649,19 +673,16 @@
         "part_attributes": false
       },
       "parameters": {
-        "meta_identifier": "42",
-        "meta_title": "{{DATASET_TITLE}}",
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/{{BID}}.city.json",
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/{{BID}}.city.jsonl",
         "identifier_attribute": "",
         "output_attribute_names": {},
-        "meta_poc_address": "",
-        "meta_poc_contactName": "",
-        "meta_poc_contactType": "",
-        "meta_poc_emailAddress": "",
-        "meta_poc_phone": "",
-        "meta_poc_website": "",
-        "meta_referenceSystem": "https://www.opengis.net/def/crs/EPSG/0/7415",
-        "prettyPrint": false
+        "prettyPrint": false,
+        "translate_x": "{{CITYJSON_TRANSLATE_X}}",
+        "translate_y": "{{CITYJSON_TRANSLATE_Y}}",
+        "translate_z": "{{CITYJSON_TRANSLATE_Z}}",
+        "scale_x": "{{CITYJSON_SCALE_X}}",
+        "scale_y": "{{CITYJSON_SCALE_Y}}",
+        "scale_z": "{{CITYJSON_SCALE_Z}}"
       },
       "position": [
         4602.0,
@@ -669,7 +690,7 @@
       ],
       "type": [
         "CoreIO",
-        "CityJSONWriter"
+        "CityJSONFeatureWriter"
       ]
     },
     "DataCoverageCalc": {
@@ -954,7 +975,7 @@
       "connections": {
         "faces": [
           [
-            "CityJSONWriter",
+            "CityJSONFeatureWriter",
             "geometry_lod12"
           ],
           [
@@ -989,7 +1010,7 @@
       "connections": {
         "faces": [
           [
-            "CityJSONWriter",
+            "CityJSONFeatureWriter",
             "geometry_lod13"
           ],
           [
@@ -1024,7 +1045,7 @@
       "connections": {
         "faces": [
           [
-            "CityJSONWriter",
+            "CityJSONFeatureWriter",
             "geometry_lod22"
           ],
           [
@@ -1236,7 +1257,7 @@
             "attributes"
           ],
           [
-            "CityJSONWriter",
+            "CityJSONFeatureWriter",
             "attributes"
           ],
           [
@@ -1266,7 +1287,7 @@
             "footprint"
           ],
           [
-            "CityJSONWriter",
+            "CityJSONFeatureWriter",
             "footprints"
           ],
           [
