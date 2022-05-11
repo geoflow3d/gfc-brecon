@@ -1,12 +1,12 @@
 {
   "globals": {
-    "CJ_DATASET_TITLE": [
-      "str",
-      "3D Basisbestrand"
-    ],
     "CJ_GEOGRAPHIC_LOCATION": [
       "str",
       "The Netherlands"
+    ],
+    "DATASET_TITLE": [
+      "str",
+      "wippolder"
     ],
     "INPUT_FOOTPRINT_SOURCE": [
       "str",
@@ -27,6 +27,10 @@
     "OUTPUT_DB_CONNECTION": [
       "str",
       "PG:dbname=databasename port=5432 host=localhost user=username password=password1234"
+    ],
+    "OUTPUT_DIR": [
+      "str",
+      "output"
     ],
     "OUTPUT_FORMAT": [
       "str",
@@ -147,7 +151,6 @@
       },
       "marked_outputs": {
         "ground_elevations": false,
-        "ground_point_clouds": false,
         "point_clouds": false
       },
       "parameters": {

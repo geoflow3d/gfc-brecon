@@ -6,7 +6,7 @@
         "value": false
       },
       "parameters": {
-        "filepath": "reconstruct/clip/{{identificatie}}/config.toml"
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{identificatie}}/config.toml"
       },
       "position": [
         418.0,
@@ -22,7 +22,7 @@
         "point_clouds": true
       },
       "parameters": {
-        "filepath": "reconstruct/clip/{{identificatie}}/points.las"
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{identificatie}}/crop/points.las"
       },
       "position": [
         415.0,
@@ -41,7 +41,7 @@
       "parameters": {
         "create_directories": true,
         "epsg": 7415,
-        "filepath": "reconstruct/clip/{{identificatie}}/footprint.gpkg",
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{identificatie}}/crop/footprint.gpkg",
         "gdaldriver": "GPKG",
         "layername": "geom",
         "output_attribute_names": {},
@@ -70,7 +70,7 @@
         "value": false
       },
       "parameters": {
-        "value": "INPUT_FOOTPRINT=reconstruct/clip/{{identificatie}}/footprint.gpkg\nINPUT_POINTCLOUD=reconstruct/clip/{{identificatie}}/points.las\nBID={{identificatie}}\nGROUND_ELEVATION={{ground_elevations}}"
+        "value": "INPUT_FOOTPRINT={{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{identificatie}}/crop/footprint.gpkg\nINPUT_POINTCLOUD={{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{identificatie}}/crop/points.las\nBID={{identificatie}}\nGROUND_ELEVATION={{ground_elevations}}\nTILE_ID={{TILE_ID}}\nDATASET_TITLE={{DATASET_TITLE}}\nOUTPUT_DIR={{OUTPUT_DIR}}"
       },
       "position": [
         254.0,
