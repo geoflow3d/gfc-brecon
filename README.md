@@ -6,4 +6,4 @@ From the root of this repository run
 
 ```
 geof crop.json
-find reconstruct/crop/*/config.toml | parallel geof reconstruct.json --config {1} --log {1}.loggfc-brecon
+find reconstruct/crop/*/config.toml | parallel geof reconstruct.json --config {1} --log {1}.log
