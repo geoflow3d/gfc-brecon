@@ -649,23 +649,19 @@
         "part_attributes": false
       },
       "parameters": {
-        "citymodelIdentifier": "42",
-        "datasetTitle": "{{DATASET_TITLE}}",
+        "meta_identifier": "42",
+        "meta_title": "{{DATASET_TITLE}}",
         "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/{{BID}}.city.json",
-        "geographicLocation": "The Netherlands",
         "identifier_attribute": "",
-        "metadataStandard": "",
-        "metadataStandardVersion": "",
         "output_attribute_names": {},
-        "poc_address": "",
-        "poc_contactName": "",
-        "poc_contactType": "",
-        "poc_emailAddress": "",
-        "poc_phone": "",
-        "poc_website": "",
-        "prettyPrint": false,
-        "referenceSystem": "https://www.opengis.net/def/crs/EPSG/0/7415",
-        "version_1_0": true
+        "meta_poc_address": "",
+        "meta_poc_contactName": "",
+        "meta_poc_contactType": "",
+        "meta_poc_emailAddress": "",
+        "meta_poc_phone": "",
+        "meta_poc_website": "",
+        "meta_referenceSystem": "https://www.opengis.net/def/crs/EPSG/0/7415",
+        "prettyPrint": false
       },
       "position": [
         4602.0,
