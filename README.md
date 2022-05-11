@@ -2,7 +2,7 @@
 This repository contains the flowcharts to get started with building reconstruction with the Geoflow software.
 
 ## How to do it
-From the root of this repositoty run
+From the root of this repository run
 
 ```
 geof crop.json
