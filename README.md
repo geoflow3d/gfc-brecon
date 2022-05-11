@@ -2,8 +2,8 @@
 This repository contains the flowcharts to get started with building reconstruction with the Geoflow software.
 
 ## How to do it
-From the root of this repositoty run
+From the root of this repository run
 
 ```
 geof crop.json
-find reconstruct/crop/*/config.toml | parallel geof reconstruct.json --config {1} --log {1}.loggfc-brecon
+find reconstruct/crop/*/config.toml | parallel geof reconstruct.json --config {1} --log {1}.log
