@@ -1,57 +1,5 @@
 {
   "globals": {
-    "BID": [
-      "str",
-      "503100000030812"
-    ],
-    "DATASET_TITLE": [
-      "str",
-      "wippolder"
-    ],
-    "GROUND_ELEVATION": [
-      "float",
-      -0.10400000214576721
-    ],
-    "INPUT_FOOTPRINT": [
-      "str",
-      "reconstruct/crop/503100000030812/footprint.gpkg"
-    ],
-    "INPUT_POINTCLOUD": [
-      "str",
-      "reconstruct/crop/503100000030812/points.las"
-    ],
-    "OUTPUT_DIR": [
-      "str",
-      "output"
-    ],
-    "TILE_ID": [
-      "str",
-      "1"
-    ],
-    "CITYJSON_TRANSLATE_X": [
-      "float",
-      -155296.79
-    ],
-    "CITYJSON_TRANSLATE_Y": [
-      "float",
-      -463212.78
-    ],
-    "CITYJSON_TRANSLATE_Z": [
-      "float",
-      0.0
-    ],
-    "CITYJSON_SCALE_X": [
-      "float",
-      0.001
-    ],
-    "CITYJSON_SCALE_Y": [
-      "float",
-      0.001
-    ],
-    "CITYJSON_SCALE_Z": [
-      "float",
-      0.001
-    ],
     "line_detect__epsilon": [
       "float",
       0.4000000059604645
@@ -95,10 +43,6 @@
     "skip_attribute_name": [
       "str",
       "kas_warenhuis"
-    ],
-    "thin_nth": [
-      "int",
-      0
     ]
   },
   "nodes": {
@@ -228,8 +172,8 @@
         "output_groundparts": true
       },
       "position": [
-        3479.0,
-        -240.0
+        3537.0,
+        252.0
       ],
       "type": [
         "building-reconstruction",
@@ -264,44 +208,8 @@
         "output_groundparts": true
       },
       "position": [
-        3525.2001953125,
-        287.0528564453125
-      ],
-      "type": [
-        "building-reconstruction",
-        "Arr2LinearRings"
-      ]
-    },
-    "Arr2LinearRings-LoD22": {
-      "connections": {
-        "attributes": [
-          [
-            "AttrRingsSelector-LoD22",
-            "attributes_B"
-          ]
-        ],
-        "linear_rings": [
-          [
-            "AttrRingsSelector-LoD22",
-            "linear_rings_B"
-          ]
-        ]
-      },
-      "marked_inputs": {
-        "arrangement": false,
-        "attributes": true,
-        "groundparts": false
-      },
-      "marked_outputs": {
-        "attributes": false,
-        "linear_rings": false
-      },
-      "parameters": {
-        "output_groundparts": true
-      },
-      "position": [
-        3531.2001953125,
-        779.0528564453125
+        3465.2001953125,
+        685.0528564453125
       ],
       "type": [
         "building-reconstruction",
@@ -340,8 +248,8 @@
         "step_height_threshold": 1.0
       },
       "position": [
-        2856.0,
-        -61.0
+        2828.0,
+        327.0
       ],
       "type": [
         "building-reconstruction",
@@ -380,44 +288,8 @@
         "step_height_threshold": "{{lod13__step_height}}"
       },
       "position": [
-        2855.0,
-        245.65283203125
-      ],
-      "type": [
-        "building-reconstruction",
-        "ArrDissolve"
-      ]
-    },
-    "ArrDissolve-LoD22": {
-      "connections": {
-        "arrangement": [
-          [
-            "ArrExtruder-LoD22",
-            "arrangement"
-          ]
-        ]
-      },
-      "marked_inputs": {
-        "arrangement": false,
-        "heightfield": false
-      },
-      "marked_outputs": {
-        "arrangement": false,
-        "global_elevation_50p": false,
-        "global_elevation_70p": false,
-        "global_elevation_max": false,
-        "global_elevation_min": false
-      },
-      "parameters": {
-        "dissolve_all_interior": false,
-        "dissolve_outside_fp": true,
-        "dissolve_seg_edges": true,
-        "dissolve_step_edges": false,
-        "step_height_threshold": 1.0
-      },
-      "position": [
-        2855.0,
-        545.65283203125
+        2821.0,
+        634.65283203125
       ],
       "type": [
         "building-reconstruction",
@@ -451,8 +323,8 @@
         "snap_tolerance_exp": 4
       },
       "position": [
-        3239.0,
-        -41.0
+        3151.0,
+        238.0
       ],
       "type": [
         "building-reconstruction",
@@ -486,43 +358,8 @@
         "snap_tolerance_exp": 4
       },
       "position": [
-        3243.39990234375,
-        426.2528076171875
-      ],
-      "type": [
-        "building-reconstruction",
-        "ArrExtruder"
-      ]
-    },
-    "ArrExtruder-LoD22": {
-      "connections": {
-        "multisolid": [
-          [
-            "FacesSelector-LoD22",
-            "faces_B"
-          ]
-        ]
-      },
-      "marked_inputs": {
-        "arrangement": false,
-        "floor_elevation": true
-      },
-      "marked_outputs": {
-        "faces": false,
-        "labels": false,
-        "mesh": false,
-        "multisolid": false
-      },
-      "parameters": {
-        "LoD2": true,
-        "do_floor": true,
-        "do_roofs": true,
-        "do_walls": true,
-        "snap_tolerance_exp": 4
-      },
-      "position": [
-        3243.39990234375,
-        926.2528076171875
+        3118.39990234375,
+        698.2528076171875
       ],
       "type": [
         "building-reconstruction",
@@ -543,8 +380,8 @@
         "linear_rings": true
       },
       "position": [
-        3874.0,
-        -255.0
+        3903.0,
+        203.0
       ],
       "type": [
         "building-reconstruction",
@@ -565,30 +402,8 @@
         "linear_rings": true
       },
       "position": [
-        3874.44677734375,
-        285.27197265625
-      ],
-      "type": [
-        "building-reconstruction",
-        "AttrRingsSelector"
-      ]
-    },
-    "AttrRingsSelector-LoD22": {
-      "marked_inputs": {
-        "attributes_A": true,
-        "attributes_B": false,
-        "linear_rings_A": true,
-        "linear_rings_B": false,
-        "replace": false,
-        "skip": false
-      },
-      "marked_outputs": {
-        "attributes": true,
-        "linear_rings": true
-      },
-      "position": [
-        3888.44677734375,
-        778.27197265625
+        3826.44677734375,
+        671.27197265625
       ],
       "type": [
         "building-reconstruction",
@@ -599,11 +414,11 @@
       "connections": {
         "result": [
           [
-            "AlphaShape",
+            "AlphaShape-ground",
             "skip"
           ],
           [
-            "AlphaShape-ground",
+            "AlphaShape",
             "skip"
           ],
           [
@@ -661,36 +476,6 @@
       "type": [
         "building-reconstruction",
         "BuildArrFromLines"
-      ]
-    },
-    "CityJSONFeatureWriter": {
-      "marked_inputs": {
-        "attributes": false,
-        "footprints": false,
-        "geometry_lod12": false,
-        "geometry_lod13": false,
-        "geometry_lod22": false,
-        "part_attributes": false
-      },
-      "parameters": {
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/{{BID}}.city.jsonl",
-        "identifier_attribute": "",
-        "output_attribute_names": {},
-        "prettyPrint": false,
-        "translate_x": "{{CITYJSON_TRANSLATE_X}}",
-        "translate_y": "{{CITYJSON_TRANSLATE_Y}}",
-        "translate_z": "{{CITYJSON_TRANSLATE_Z}}",
-        "scale_x": "{{CITYJSON_SCALE_X}}",
-        "scale_y": "{{CITYJSON_SCALE_Y}}",
-        "scale_z": "{{CITYJSON_SCALE_Z}}"
-      },
-      "position": [
-        4602.0,
-        424.0
-      ],
-      "type": [
-        "CoreIO",
-        "CityJSONFeatureWriter"
       ]
     },
     "DataCoverageCalc": {
@@ -787,10 +572,6 @@
             "ipoints"
           ],
           [
-            "PC2MeshQuality-LoD22",
-            "ipoints"
-          ],
-          [
             "PlaneIntersect",
             "pts_per_roofplane"
           ],
@@ -859,10 +640,6 @@
             "attributes"
           ],
           [
-            "Arr2LinearRings-LoD22",
-            "attributes"
-          ],
-          [
             "AttrRingsSelector-LoD12",
             "attributes_A"
           ],
@@ -873,7 +650,7 @@
         ]
       },
       "marked_inputs": {
-        "points": true
+        "points": false
       },
       "marked_outputs": {
         "horiz_roofplane_cnt": false,
@@ -907,8 +684,8 @@
         "only_horizontal": false
       },
       "position": [
-        915.0,
-        137.79998779296875
+        912.0,
+        132.79998779296875
       ],
       "type": [
         "building-reconstruction",
@@ -929,7 +706,7 @@
         ]
       },
       "marked_inputs": {
-        "points": true
+        "points": false
       },
       "marked_outputs": {
         "horiz_roofplane_cnt": false,
@@ -975,10 +752,6 @@
       "connections": {
         "faces": [
           [
-            "CityJSONFeatureWriter",
-            "geometry_lod12"
-          ],
-          [
             "PolygonTriangulator-LoD12",
             "polygons"
           ],
@@ -998,8 +771,8 @@
         "faces": true
       },
       "position": [
-        3542.0,
-        -41.0
+        3242.0,
+        365.0
       ],
       "type": [
         "building-reconstruction",
@@ -1009,10 +782,6 @@
     "FacesSelector-LoD13": {
       "connections": {
         "faces": [
-          [
-            "CityJSONFeatureWriter",
-            "geometry_lod13"
-          ],
           [
             "PolygonTriangulator-LoD13",
             "polygons"
@@ -1033,114 +802,12 @@
         "faces": true
       },
       "position": [
-        3540.171875,
-        426.635986328125
+        3122.171875,
+        853.635986328125
       ],
       "type": [
         "building-reconstruction",
         "FacesSelector"
-      ]
-    },
-    "FacesSelector-LoD22": {
-      "connections": {
-        "faces": [
-          [
-            "CityJSONFeatureWriter",
-            "geometry_lod22"
-          ],
-          [
-            "PolygonTriangulator-LoD22",
-            "polygons"
-          ],
-          [
-            "Validator-LoD22",
-            "input_geom"
-          ]
-        ]
-      },
-      "marked_inputs": {
-        "faces_A": false,
-        "faces_B": false,
-        "replace": false,
-        "skip": false
-      },
-      "marked_outputs": {
-        "faces": true
-      },
-      "position": [
-        3540.171875,
-        926.635986328125
-      ],
-      "type": [
-        "building-reconstruction",
-        "FacesSelector"
-      ]
-    },
-    "Ground_elevation": {
-      "connections": {
-        "value": [
-          [
-            "ArrExtruder-LoD12",
-            "floor_elevation"
-          ],
-          [
-            "ArrExtruder-LoD13",
-            "floor_elevation"
-          ],
-          [
-            "ArrExtruder-LoD22",
-            "floor_elevation"
-          ],
-          [
-            "LOD1Extruder-LoD11",
-            "floor_elevation"
-          ]
-        ]
-      },
-      "marked_outputs": {
-        "value": false
-      },
-      "parameters": {
-        "value": "{{GROUND_ELEVATION}}"
-      },
-      "position": [
-        2074.5,
-        25.0679931640625
-      ],
-      "type": [
-        "Core",
-        "Float"
-      ]
-    },
-    "LASLoader": {
-      "connections": {
-        "points": [
-          [
-            "SplitGroundBuilding",
-            "point_cloud"
-          ]
-        ]
-      },
-      "marked_outputs": {
-        "classification": false,
-        "colors": false,
-        "intensity": false,
-        "order": false,
-        "points": false
-      },
-      "parameters": {
-        "do_filter": false,
-        "filepath": "{{INPUT_POINTCLOUD}}",
-        "filter_class": 6,
-        "thin_nth": "{{thin_nth}}"
-      },
-      "position": [
-        389.5,
-        213.0679931640625
-      ],
-      "type": [
-        "io-las",
-        "LASLoader"
       ]
     },
     "LOD1Extruder-LoD11": {
@@ -1152,10 +819,6 @@
           ],
           [
             "FacesSelector-LoD13",
-            "faces_A"
-          ],
-          [
-            "FacesSelector-LoD22",
             "faces_A"
           ],
           [
@@ -1175,169 +838,23 @@
         "surface_types": false
       },
       "position": [
-        2365.34375,
-        -309.63592529296875
+        2372.34375,
+        -404.63592529296875
       ],
       "type": [
         "building-reconstruction",
         "LOD1Extruder"
       ]
     },
-    "OBJVecWriter-LoD13": {
-      "marked_inputs": {
-        "attributes": false,
-        "triangles": false
-      },
-      "parameters": {
-        "Headerline": "",
-        "attribute_name": "identificatie",
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/lod13.obj",
-        "no_offset": false,
-        "precision": 5
-      },
-      "position": [
-        4240.0,
-        427.0
-      ],
-      "type": [
-        "CoreIO",
-        "OBJVecWriter"
-      ]
-    },
-    "OBJVecWriter-LoD22": {
-      "marked_inputs": {
-        "attributes": false,
-        "triangles": false
-      },
-      "parameters": {
-        "Headerline": "",
-        "attribute_name": "identificatie",
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/lod22.obj",
-        "no_offset": false,
-        "precision": 5
-      },
-      "position": [
-        4240.0,
-        927.0
-      ],
-      "type": [
-        "CoreIO",
-        "OBJVecWriter"
-      ]
-    },
-    "OGRLoader": {
-      "connections": {
-        "attributes": [
-          [
-            "Arr2LinearRings-LoD12",
-            "attributes"
-          ],
-          [
-            "Arr2LinearRings-LoD13",
-            "attributes"
-          ],
-          [
-            "Arr2LinearRings-LoD22",
-            "attributes"
-          ],
-          [
-            "AttrRingsSelector-LoD12",
-            "attributes_A"
-          ],
-          [
-            "AttrRingsSelector-LoD13",
-            "attributes_A"
-          ],
-          [
-            "AttrRingsSelector-LoD22",
-            "attributes_A"
-          ],
-          [
-            "AttributeTester",
-            "attributes"
-          ],
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ],
-          [
-            "OBJVecWriter-LoD13",
-            "attributes"
-          ],
-          [
-            "OBJVecWriter-LoD22",
-            "attributes"
-          ]
-        ],
-        "linear_rings": [
-          [
-            "AttrRingsSelector-LoD12",
-            "linear_rings_A"
-          ],
-          [
-            "AttrRingsSelector-LoD13",
-            "linear_rings_A"
-          ],
-          [
-            "AttrRingsSelector-LoD22",
-            "linear_rings_A"
-          ],
-          [
-            "BuildArrFromLines",
-            "footprint"
-          ],
-          [
-            "CityJSONFeatureWriter",
-            "footprints"
-          ],
-          [
-            "DataCoverageCalc",
-            "footprint_polygon"
-          ],
-          [
-            "LOD1Extruder-LoD11",
-            "polygon"
-          ]
-        ]
-      },
-      "marked_outputs": {
-        "area": false,
-        "attributes": false,
-        "is_valid": false,
-        "line_strings": false,
-        "linear_rings": false
-      },
-      "parameters": {
-        "base_elevation": 0.0,
-        "filepath": "{{INPUT_FOOTPRINT}}",
-        "layer_id": 0
-      },
-      "position": [
-        453.5,
-        70.0679931640625
-      ],
-      "type": [
-        "io-gdal",
-        "OGRLoader"
-      ]
-    },
     "OptimiseArrangmentGrid": {
       "connections": {
         "arrangement": [
-          [
-            "Arr2LinearRings-LoD22",
-            "arrangement"
-          ],
           [
             "ArrDissolve-LoD12",
             "arrangement"
           ],
           [
             "ArrDissolve-LoD13",
-            "arrangement"
-          ],
-          [
-            "ArrDissolve-LoD22",
             "arrangement"
           ]
         ],
@@ -1348,10 +865,6 @@
           ],
           [
             "Arr2LinearRings-LoD13",
-            "groundparts"
-          ],
-          [
-            "Arr2LinearRings-LoD22",
             "groundparts"
           ],
           [
@@ -1430,8 +943,8 @@
         "point_errors": false
       },
       "position": [
-        3911.0,
-        -16.0
+        3684.0,
+        475.0
       ],
       "type": [
         "building-reconstruction",
@@ -1454,32 +967,8 @@
         "point_errors": false
       },
       "position": [
-        3915.0,
-        526.65283203125
-      ],
-      "type": [
-        "building-reconstruction",
-        "PC2MeshQuality"
-      ]
-    },
-    "PC2MeshQuality-LoD22": {
-      "marked_inputs": {
-        "face_ids": false,
-        "ipoints": false,
-        "triangles": false
-      },
-      "marked_outputs": {
-        "error_hist": true,
-        "face_errors": false,
-        "m2pc_error_hist": true,
-        "m2pc_error_max": true,
-        "mesh_error": false,
-        "mesh_error_f": true,
-        "point_errors": false
-      },
-      "position": [
-        3921.0,
-        1028.65283203125
+        3427.0,
+        932.65283203125
       ],
       "type": [
         "building-reconstruction",
@@ -1513,6 +1002,45 @@
       "type": [
         "building-reconstruction",
         "PlaneIntersect"
+      ]
+    },
+    "PointCloudSplitter": {
+      "connections": {
+        "A": [
+          [
+            "DetectPlanes-ground",
+            "points"
+          ]
+        ],
+        "B": [
+          [
+            "DetectPlanes",
+            "points"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "point_cloud": true
+      },
+      "marked_outputs": {
+        "A": false,
+        "B": false,
+        "C": false,
+        "D": false
+      },
+      "parameters": {
+        "class A": 2,
+        "class B": 6,
+        "class C": 0,
+        "class D": 1
+      },
+      "position": [
+        557.0,
+        248.0
+      ],
+      "type": [
+        "io-las",
+        "PointCloudClassSplit"
       ]
     },
     "PolygonTriangulator-LoD11": {
@@ -1581,8 +1109,8 @@
         "output_all_triangles": false
       },
       "position": [
-        3545.0,
-        48.0
+        3602.0,
+        377.0
       ],
       "type": [
         "building-reconstruction",
@@ -1593,10 +1121,6 @@
       "connections": {
         "multi_triangle_collections": [
           [
-            "OBJVecWriter-LoD13",
-            "triangles"
-          ],
-          [
             "PC2MeshQuality-LoD13",
             "triangles"
           ]
@@ -1622,49 +1146,8 @@
         "output_all_triangles": false
       },
       "position": [
-        3537.1728515625,
-        521.4730224609375
-      ],
-      "type": [
-        "building-reconstruction",
-        "PolygonTriangulator"
-      ]
-    },
-    "PolygonTriangulator-LoD22": {
-      "connections": {
-        "multi_triangle_collections": [
-          [
-            "OBJVecWriter-LoD22",
-            "triangles"
-          ],
-          [
-            "PC2MeshQuality-LoD22",
-            "triangles"
-          ]
-        ],
-        "ring_ids": [
-          [
-            "PC2MeshQuality-LoD22",
-            "face_ids"
-          ]
-        ]
-      },
-      "marked_inputs": {
-        "polygons": false
-      },
-      "marked_outputs": {
-        "multi_triangle_collections": true,
-        "normals": false,
-        "ring_ids": false,
-        "triangles": false
-      },
-      "parameters": {
-        "dupe_threshold_exp": 4,
-        "output_all_triangles": false
-      },
-      "position": [
-        3528.1728515625,
-        1029.4730224609375
+        3435.1728515625,
+        841.4730224609375
       ],
       "type": [
         "building-reconstruction",
@@ -1726,10 +1209,6 @@
             "heightfield"
           ],
           [
-            "ArrDissolve-LoD22",
-            "heightfield"
-          ],
-          [
             "OptimiseArrangmentGrid",
             "heightfield"
           ]
@@ -1776,19 +1255,11 @@
             "replace"
           ],
           [
-            "AttrRingsSelector-LoD22",
-            "replace"
-          ],
-          [
             "FacesSelector-LoD12",
             "replace"
           ],
           [
             "FacesSelector-LoD13",
-            "replace"
-          ],
-          [
-            "FacesSelector-LoD22",
             "replace"
           ]
         ],
@@ -1802,10 +1273,6 @@
             "attributes"
           ],
           [
-            "Arr2LinearRings-LoD22",
-            "attributes"
-          ],
-          [
             "AttrRingsSelector-LoD12",
             "attributes_A"
           ],
@@ -1816,15 +1283,11 @@
         ],
         "skip": [
           [
-            "AttrRingsSelector-LoD12",
-            "skip"
-          ],
-          [
             "AttrRingsSelector-LoD13",
             "skip"
           ],
           [
-            "AttrRingsSelector-LoD22",
+            "AttrRingsSelector-LoD12",
             "skip"
           ],
           [
@@ -1833,10 +1296,6 @@
           ],
           [
             "FacesSelector-LoD13",
-            "skip"
-          ],
-          [
-            "FacesSelector-LoD22",
             "skip"
           ]
         ]
@@ -1855,51 +1314,12 @@
         "attribute_name": "{{skip_attribute_name}}"
       },
       "position": [
-        2399.0,
-        -180.364013671875
+        2426.0,
+        -232.364013671875
       ],
       "type": [
         "building-reconstruction",
         "SkipReplaceTester"
-      ]
-    },
-    "SplitGroundBuilding": {
-      "connections": {
-        "A": [
-          [
-            "DetectPlanes-ground",
-            "points"
-          ]
-        ],
-        "B": [
-          [
-            "DetectPlanes",
-            "points"
-          ]
-        ]
-      },
-      "marked_inputs": {
-        "point_cloud": false
-      },
-      "marked_outputs": {
-        "A": false,
-        "B": false,
-        "C": false,
-        "D": false
-      },
-      "parameters": {
-        "class A": 2,
-        "class B": 6,
-        "class C": 0,
-        "class D": 1
-      },
-      "position": [
-        380.5,
-        332.0679931640625
-      ],
-      "type": [
-        "io-las",
-        "PointCloudClassSplit"
       ]
     },
     "TriSnap": {
@@ -1948,8 +1368,8 @@
         "tol_planarity_normals_": 20.0
       },
       "position": [
-        3909.0,
-        -94.0
+        3907.0,
+        57.0
       ],
       "type": [
         "Val3dity",
@@ -1971,31 +1391,8 @@
         "tol_planarity_normals_": 20.0
       },
       "position": [
-        3915.0,
-        451.0
-      ],
-      "type": [
-        "Val3dity",
-        "Validator"
-      ]
-    },
-    "Validator-LoD22": {
-      "marked_inputs": {
-        "input_geom": false
-      },
-      "marked_outputs": {
-        "error_faces": false,
-        "error_locations": false,
-        "errors": true
-      },
-      "parameters": {
-        "log_invalids": false,
-        "tol_planarity_d2p_": 0.009999999776482582,
-        "tol_planarity_normals_": 20.0
-      },
-      "position": [
-        3915.0,
-        951.0
+        3428.0,
+        1150.0
       ],
       "type": [
         "Val3dity",

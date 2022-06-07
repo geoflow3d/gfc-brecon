@@ -10,11 +10,11 @@
     ],
     "INPUT_FOOTPRINT_SOURCE": [
       "str",
-      "test-data/wippolder.gpkg"
+      "../test-data/wippolder.gpkg"
     ],
     "INPUT_LAS_FILES": [
       "str",
-      "test-data/wippolder.las"
+      "../test-data/wippolder.las"
     ],
     "OUTPUT_CITYJSON_DIR": [
       "str",
