@@ -54,7 +54,7 @@
       ],
       "type": [
         "io-gdal",
-        "OGRPostGISWriter"
+        "OGRWriter"
       ]
     },
     "Text": {

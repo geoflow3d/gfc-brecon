@@ -537,13 +537,13 @@
       "connections": {
         "attributes": [
           [
-            "OGRPostGISWriter-LoD12",
+            "OGRWriter-LoD12",
             "attributes"
           ]
         ],
         "linear_rings": [
           [
-            "OGRPostGISWriter-LoD12",
+            "OGRWriter-LoD12",
             "geometries"
           ]
         ]
@@ -573,13 +573,13 @@
       "connections": {
         "attributes": [
           [
-            "OGRPostGISWriter-LoD13",
+            "OGRWriter-LoD13",
             "attributes"
           ]
         ],
         "linear_rings": [
           [
-            "OGRPostGISWriter-LoD13",
+            "OGRWriter-LoD13",
             "geometries"
           ]
         ]
@@ -609,13 +609,13 @@
       "connections": {
         "attributes": [
           [
-            "OGRPostGISWriter-LoD22",
+            "OGRWriter-LoD22",
             "attributes"
           ]
         ],
         "linear_rings": [
           [
-            "OGRPostGISWriter-LoD22",
+            "OGRWriter-LoD22",
             "geometries"
           ]
         ]
@@ -1315,7 +1315,7 @@
             "attributes"
           ],
           [
-            "OGRPostGISWriter-LoD11",
+            "OGRWriter-LoD11",
             "attributes"
           ]
         ],
@@ -1349,7 +1349,7 @@
             "polygon"
           ],
           [
-            "OGRPostGISWriter-LoD11",
+            "OGRWriter-LoD11",
             "geometries"
           ]
         ]
@@ -1375,7 +1375,7 @@
         "OGRLoader"
       ]
     },
-    "OGRPostGISWriter-LoD11": {
+    "OGRWriter-LoD11": {
       "marked_inputs": {
         "attributes": false,
         "geometries": false
@@ -1397,10 +1397,10 @@
       ],
       "type": [
         "io-gdal",
-        "OGRPostGISWriter"
+        "OGRWriter"
       ]
     },
-    "OGRPostGISWriter-LoD12": {
+    "OGRWriter-LoD12": {
       "marked_inputs": {
         "attributes": false,
         "geometries": false
@@ -1422,10 +1422,10 @@
       ],
       "type": [
         "io-gdal",
-        "OGRPostGISWriter"
+        "OGRWriter"
       ]
     },
-    "OGRPostGISWriter-LoD13": {
+    "OGRWriter-LoD13": {
       "marked_inputs": {
         "attributes": false,
         "geometries": false
@@ -1447,10 +1447,10 @@
       ],
       "type": [
         "io-gdal",
-        "OGRPostGISWriter"
+        "OGRWriter"
       ]
     },
-    "OGRPostGISWriter-LoD22": {
+    "OGRWriter-LoD22": {
       "marked_inputs": {
         "attributes": false,
         "geometries": false
@@ -1472,7 +1472,7 @@
       ],
       "type": [
         "io-gdal",
-        "OGRPostGISWriter"
+        "OGRWriter"
       ]
     },
     "OptimiseArrangmentGrid": {
@@ -1942,7 +1942,7 @@
             "replace"
           ],
           [
-            "OGRPostGISWriter-LoD11",
+            "OGRWriter-LoD11",
             "attributes"
           ]
         ],
@@ -1968,7 +1968,7 @@
             "attributes_A"
           ],
           [
-            "OGRPostGISWriter-LoD11",
+            "OGRWriter-LoD11",
             "attributes"
           ]
         ],
@@ -1998,7 +1998,7 @@
             "skip"
           ],
           [
-            "OGRPostGISWriter-LoD11",
+            "OGRWriter-LoD11",
             "attributes"
           ]
         ]
