@@ -20,26 +20,6 @@
       "str",
       "test-data/wippolder.las"
     ],
-    "r_line_epsilon": [
-      "maximum distance between detected line and its inliers",
-      "float",
-      0.4000000059604645
-    ],
-    "r_lod13_step_height": [
-      "Step height used in LoD1.3 generalisation; roofparts with a height difference smaller than this value are merged",
-      "float",
-      3.0
-    ],
-    "r_normal_k": [
-      "number of neighbors used for normal estimation",
-      "int",
-      5
-    ],
-    "r_optimisation_data_term": [
-      "Increase to get more complex models that are closer to input pointcloud. Decrease to get a more generalised output model.",
-      "float",
-      7.0
-    ],
     "output_cityjson": [
       "CityJSON output file",
       "str",
@@ -129,6 +109,26 @@
       "Overwrite 2D vector output. If false then output is appended in case of existing file",
       "bool",
       true
+    ],
+    "r_line_epsilon": [
+      "maximum distance between detected line and its inliers",
+      "float",
+      0.4000000059604645
+    ],
+    "r_lod13_step_height": [
+      "Step height used in LoD1.3 generalisation; roofparts with a height difference smaller than this value are merged",
+      "float",
+      3.0
+    ],
+    "r_normal_k": [
+      "number of neighbors used for normal estimation",
+      "int",
+      5
+    ],
+    "r_optimisation_data_term": [
+      "Increase to get more complex models that are closer to input pointcloud. Decrease to get a more generalised output model.",
+      "float",
+      7.0
     ],
     "r_plane_epsilon": [
       "maximum distance between plane and its inliers",
@@ -792,7 +792,7 @@
         "part_attributes": false
       },
       "parameters": {
-        "filepath": "",
+        "filepath": "{{output_cityjson}}",
         "identifier_attribute": "{{building_identifier}}",
         "meta_identifier": "{{output_cj_identifier}}",
         "meta_poc_address": "{{output_cj_poc_address}}",

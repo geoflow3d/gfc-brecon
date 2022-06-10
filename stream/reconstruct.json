@@ -1,102 +1,132 @@
 {
   "globals": {
     "BID": [
+      "Building identifier",
       "str",
       "503100000030812"
     ],
     "CITYJSON_SCALE_X": [
+      "",
       "float",
       0.0010000000474974513
     ],
     "CITYJSON_SCALE_Y": [
+      "",
       "float",
       0.0010000000474974513
     ],
     "CITYJSON_SCALE_Z": [
+      "",
       "float",
       0.0010000000474974513
     ],
     "CITYJSON_TRANSLATE_X": [
+      "",
       "float",
       -155296.796875
     ],
     "CITYJSON_TRANSLATE_Y": [
+      "",
       "float",
       -463212.78125
     ],
     "CITYJSON_TRANSLATE_Z": [
+      "",
       "float",
       0.0
     ],
     "DATASET_TITLE": [
+      "",
       "str",
       "wippolder"
     ],
     "GROUND_ELEVATION": [
+      "",
       "float",
       -0.10400000214576721
     ],
     "INPUT_FOOTPRINT": [
+      "",
       "str",
       "output/wippolder/1/503100000030812/crop/footprint.gpkg"
     ],
     "INPUT_POINTCLOUD": [
+      "",
       "str",
       "output/wippolder/1/503100000030812/crop/points.las"
     ],
     "OUTPUT_DIR": [
+      "",
       "str",
       "output"
     ],
     "TILE_ID": [
+      "",
       "str",
       "1"
     ],
     "line_detect__epsilon": [
+      "",
       "float",
       0.4000000059604645
     ],
-    "line_detect__min_points_lower": [
-      "int",
-      5
-    ],
-    "line_detect__min_points_upper": [
-      "int",
-      10
-    ],
     "lod13__step_height": [
+      "",
       "float",
       3.0
     ],
     "normal_estimate__k": [
+      "",
       "int",
       5
     ],
     "optimisation_data_term": [
+      "",
       "float",
       7.0
     ],
     "plane_detect__epsilon": [
+      "",
       "float",
       0.20000000298023224
     ],
     "plane_detect__k": [
+      "",
       "int",
       15
     ],
     "plane_detect__min_points": [
+      "",
       "int",
       15
     ],
     "plane_detect__normal_angle": [
+      "",
       "float",
       0.75
     ],
     "skip_attribute_name": [
+      "",
       "str",
       "kas_warenhuis"
     ],
+    "skip_lod12": [
+      "",
+      "bool",
+      false
+    ],
+    "skip_lod13": [
+      "",
+      "bool",
+      false
+    ],
+    "skip_lod22": [
+      "",
+      "bool",
+      false
+    ],
     "thin_nth": [
+      "",
       "int",
       0
     ]
@@ -337,6 +367,7 @@
         "dissolve_outside_fp": true,
         "dissolve_seg_edges": false,
         "dissolve_step_edges": false,
+        "skip_execution": "{{skip_lod12}}",
         "step_height_threshold": 1.0
       },
       "position": [
@@ -377,6 +408,7 @@
         "dissolve_outside_fp": true,
         "dissolve_seg_edges": true,
         "dissolve_step_edges": true,
+        "skip_execution": "{{skip_lod13}}",
         "step_height_threshold": "{{lod13__step_height}}"
       },
       "position": [
@@ -417,6 +449,7 @@
         "dissolve_outside_fp": true,
         "dissolve_seg_edges": true,
         "dissolve_step_edges": false,
+        "skip_execution": "{{skip_lod22}}",
         "step_height_threshold": 1.0
       },
       "position": [
@@ -784,8 +817,8 @@
         "dist_thres": "{{line_detect__epsilon}}",
         "k": 10,
         "line_extend": 0.05000000074505806,
-        "min_cnt_range_lower": "{{line_detect__min_points_lower}}",
-        "min_cnt_range_upper": "{{line_detect__min_points_upper}}",
+        "min_cnt_range_lower": 5,
+        "min_cnt_range_upper": 10,
         "perform_chaining": true,
         "remove_overlap": true,
         "snap_threshold": 1.0
