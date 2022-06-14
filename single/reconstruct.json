@@ -8,7 +8,7 @@
     "input_footprint": [
       "Input 2D vector file with building footprint(s)",
       "str",
-      "test-data/wippolder.gpkg"
+      ""
     ],
     "input_footprint_select": [
       "Feature number to load (value must be in the range 1 to number of features in foootprint input)",
@@ -18,7 +18,7 @@
     "input_pointcloud": [
       "Input pointcloud. Should contain building (6) and ground class (2)",
       "str",
-      "test-data/wippolder.las"
+      ""
     ],
     "output_cityjson": [
       "CityJSON output file",
@@ -388,6 +388,30 @@
           [
             "ArrExtruder-LoD12",
             "arrangement"
+          ]
+        ],
+        "global_elevation_50p": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ]
+        ],
+        "global_elevation_70p": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ]
+        ],
+        "global_elevation_max": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ]
+        ],
+        "global_elevation_min": [
+          [
+            "CityJSONWriter",
+            "attributes"
           ]
         ]
       },
@@ -808,8 +832,8 @@
         "prettyPrint": false
       },
       "position": [
-        4519.0,
-        320.0
+        4520.0,
+        369.0
       ],
       "type": [
         "CoreIO",
@@ -817,6 +841,14 @@
       ]
     },
     "DataCoverageCalc": {
+      "connections": {
+        "data_coverage": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "data_area": false,
         "footprint_polygon": true,
@@ -826,8 +858,8 @@
         "data_coverage": true
       },
       "position": [
-        2003.5,
-        561.8179931640625
+        2001.5,
+        543.8179931640625
       ],
       "type": [
         "building-reconstruction",
@@ -1215,6 +1247,10 @@
             "floor_elevation"
           ],
           [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
             "LOD1Extruder-LoD11",
             "floor_elevation"
           ]
@@ -1509,8 +1545,33 @@
         "transaction_batch_size_": 1000
       },
       "position": [
-        4511.0,
-        -56.0
+        4507.0,
+        -44.0
+      ],
+      "type": [
+        "io-gdal",
+        "OGRWriter"
+      ]
+    },
+    "OGRWriter-LoD12-3D": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "create_directories": true,
+        "epsg": 7415,
+        "filepath": "{{output_vector2d}}",
+        "gdaldriver": "GPKG",
+        "layername": "LoD12_3D",
+        "output_attribute_names": {},
+        "overwrite": "{{output_vector_2d_overwrite}}",
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [
+        4506.0,
+        20.0
       ],
       "type": [
         "io-gdal",
@@ -1542,6 +1603,31 @@
         "OGRWriter"
       ]
     },
+    "OGRWriter-LoD13-3D": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "create_directories": true,
+        "epsg": 7415,
+        "filepath": "{{output_vector2d}}",
+        "gdaldriver": "GPKG",
+        "layername": "LoD13_3D",
+        "output_attribute_names": {},
+        "overwrite": "{{output_vector_2d_overwrite}}",
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [
+        4523.0,
+        225.0
+      ],
+      "type": [
+        "io-gdal",
+        "OGRWriter"
+      ]
+    },
     "OGRWriter-LoD22": {
       "marked_inputs": {
         "attributes": false,
@@ -1561,6 +1647,31 @@
       "position": [
         4541.0,
         664.0
+      ],
+      "type": [
+        "io-gdal",
+        "OGRWriter"
+      ]
+    },
+    "OGRWriter-LoD22-3D": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "create_directories": true,
+        "epsg": 7415,
+        "filepath": "{{output_vector2d}}",
+        "gdaldriver": "GPKG",
+        "layername": "LoD22_3D",
+        "output_attribute_names": {},
+        "overwrite": "{{output_vector_2d_overwrite}}",
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [
+        4536.0,
+        738.0
       ],
       "type": [
         "io-gdal",
@@ -1901,6 +2012,10 @@
           [
             "PC2MeshQuality-LoD12",
             "triangles"
+          ],
+          [
+            "OGRWriter-LoD12-3D",
+            "geometries"
           ]
         ],
         "ring_ids": [
@@ -1942,6 +2057,10 @@
           [
             "PC2MeshQuality-LoD13",
             "triangles"
+          ],
+          [
+            "OGRWriter-LoD13-3D",
+            "geometries"
           ]
         ],
         "ring_ids": [
@@ -1983,6 +2102,10 @@
           [
             "PC2MeshQuality-LoD22",
             "triangles"
+          ],
+          [
+            "OGRWriter-LoD22-3D",
+            "geometries"
           ]
         ],
         "ring_ids": [
