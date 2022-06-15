@@ -2,7 +2,10 @@
 This repository contains the flowcharts to get started with building reconstruction with the Geoflow software.
 
 ## How to do it
-From the root of this repository run
+Download some test data from `https://data.3dgi.xyz/geoflow-test-data`.
+The following instruction works if you have placed the test data sets into a `test-data` directory in this repository.
+
+Then from the root of this repository run:
 
 ```
 geof single/reconstruct.json \
