@@ -8,7 +8,7 @@
     "input_footprint": [
       "Input 2D vector file with building footprint(s)",
       "str",
-      ""
+      "../test-data/wippolder.gpkg"
     ],
     "input_footprint_select": [
       "Feature number to load (value must be in the range 1 to number of features in foootprint input)",
@@ -18,7 +18,7 @@
     "input_pointcloud": [
       "Input pointcloud. Should contain building (6) and ground class (2)",
       "str",
-      ""
+      "../test-data/wippolder.las"
     ],
     "output_cityjson": [
       "CityJSON output file",
@@ -1566,7 +1566,7 @@
         "layername": "LoD12_3D",
         "output_attribute_names": {},
         "overwrite": "{{output_vector_2d_overwrite}}",
-        "require_attributes": true,
+        "require_attributes": false,
         "transaction_batch_size_": 1000
       },
       "position": [
@@ -1616,7 +1616,7 @@
         "layername": "LoD13_3D",
         "output_attribute_names": {},
         "overwrite": "{{output_vector_2d_overwrite}}",
-        "require_attributes": true,
+        "require_attributes": false,
         "transaction_batch_size_": 1000
       },
       "position": [
@@ -1666,7 +1666,7 @@
         "layername": "LoD22_3D",
         "output_attribute_names": {},
         "overwrite": "{{output_vector_2d_overwrite}}",
-        "require_attributes": true,
+        "require_attributes": false,
         "transaction_batch_size_": 1000
       },
       "position": [
@@ -1768,6 +1768,18 @@
       ]
     },
     "PC2MeshQuality-LoD12": {
+      "connections": {
+        "mesh_error_f": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "face_ids": false,
         "ipoints": false,
@@ -1792,6 +1804,18 @@
       ]
     },
     "PC2MeshQuality-LoD13": {
+      "connections": {
+        "mesh_error_f": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "face_ids": false,
         "ipoints": false,
@@ -1816,6 +1840,18 @@
       ]
     },
     "PC2MeshQuality-LoD22": {
+      "connections": {
+        "mesh_error_f": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "face_ids": false,
         "ipoints": false,
@@ -2010,12 +2046,12 @@
             "triangles"
           ],
           [
-            "PC2MeshQuality-LoD12",
-            "triangles"
-          ],
-          [
             "OGRWriter-LoD12-3D",
             "geometries"
+          ],
+          [
+            "PC2MeshQuality-LoD12",
+            "triangles"
           ]
         ],
         "ring_ids": [
@@ -2055,12 +2091,12 @@
             "triangles"
           ],
           [
-            "PC2MeshQuality-LoD13",
-            "triangles"
-          ],
-          [
             "OGRWriter-LoD13-3D",
             "geometries"
+          ],
+          [
+            "PC2MeshQuality-LoD13",
+            "triangles"
           ]
         ],
         "ring_ids": [
@@ -2100,12 +2136,12 @@
             "triangles"
           ],
           [
-            "PC2MeshQuality-LoD22",
-            "triangles"
-          ],
-          [
             "OGRWriter-LoD22-3D",
             "geometries"
+          ],
+          [
+            "PC2MeshQuality-LoD22",
+            "triangles"
           ]
         ],
         "ring_ids": [
@@ -2373,6 +2409,18 @@
       ]
     },
     "Validator-LoD12": {
+      "connections": {
+        "errors": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "input_geom": false
       },
@@ -2396,6 +2444,18 @@
       ]
     },
     "Validator-LoD13": {
+      "connections": {
+        "errors": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "input_geom": false
       },
@@ -2419,6 +2479,18 @@
       ]
     },
     "Validator-LoD22": {
+      "connections": {
+        "errors": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "input_geom": false
       },
