@@ -394,11 +394,19 @@
           [
             "CityJSONWriter",
             "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
           ]
         ],
         "global_elevation_70p": [
           [
             "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
             "attributes"
           ]
         ],
@@ -406,11 +414,19 @@
           [
             "CityJSONWriter",
             "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
           ]
         ],
         "global_elevation_min": [
           [
             "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
             "attributes"
           ]
         ]
@@ -832,8 +848,8 @@
         "prettyPrint": false
       },
       "position": [
-        4520.0,
-        369.0
+        4553.0,
+        444.0
       ],
       "type": [
         "CoreIO",
@@ -845,6 +861,10 @@
         "data_coverage": [
           [
             "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
             "attributes"
           ]
         ]
@@ -930,10 +950,6 @@
             "pts_per_roofplane"
           ],
           [
-            "PC2MeshQuality-LoD11",
-            "ipoints"
-          ],
-          [
             "PC2MeshQuality-LoD12",
             "ipoints"
           ],
@@ -998,7 +1014,17 @@
             "attributes_A"
           ]
         ],
+        "roof_pt_cnt": [
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ],
         "roof_type": [
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ],
           [
             "SkipReplaceTester",
             "roof_type"
@@ -1253,6 +1279,10 @@
           [
             "LOD1Extruder-LoD11",
             "floor_elevation"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
           ]
         ],
         "point_clouds": [
@@ -1301,10 +1331,6 @@
           [
             "FacesSelector-LoD22",
             "faces_A"
-          ],
-          [
-            "PolygonTriangulator-LoD11",
-            "polygons"
           ]
         ]
       },
@@ -1440,6 +1466,18 @@
           [
             "OGRWriter-LoD11",
             "attributes"
+          ],
+          [
+            "OGRWriter-LoD12-3D",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD13-3D",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD22-3D",
+            "attributes"
           ]
         ],
         "linear_rings": [
@@ -1460,20 +1498,12 @@
             "footprint"
           ],
           [
-            "CityJSONWriter",
-            "footprints"
-          ],
-          [
             "DataCoverageCalc",
             "footprint_polygon"
           ],
           [
             "LOD1Extruder-LoD11",
             "polygon"
-          ],
-          [
-            "OGRWriter-LoD11",
-            "geometries"
           ],
           [
             "PolygonSimplifyGEOS",
@@ -1496,7 +1526,7 @@
       },
       "position": [
         455.5,
-        65.0679931640625
+        47.0679931640625
       ],
       "type": [
         "io-gdal",
@@ -1520,8 +1550,8 @@
         "transaction_batch_size_": 1000
       },
       "position": [
-        4505.0,
-        -128.0
+        4540.0,
+        -246.0
       ],
       "type": [
         "io-gdal",
@@ -1743,30 +1773,6 @@
         "OptimiseArrangmentGrid"
       ]
     },
-    "PC2MeshQuality-LoD11": {
-      "marked_inputs": {
-        "face_ids": false,
-        "ipoints": false,
-        "triangles": false
-      },
-      "marked_outputs": {
-        "error_hist": true,
-        "face_errors": false,
-        "m2pc_error_hist": true,
-        "m2pc_error_max": true,
-        "mesh_error": false,
-        "mesh_error_f": true,
-        "point_errors": false
-      },
-      "position": [
-        2795.0,
-        -375.864013671875
-      ],
-      "type": [
-        "building-reconstruction",
-        "PC2MeshQuality"
-      ]
-    },
     "PC2MeshQuality-LoD12": {
       "connections": {
         "mesh_error_f": [
@@ -1974,8 +1980,16 @@
       "connections": {
         "simplified_polygons": [
           [
+            "CityJSONWriter",
+            "footprints"
+          ],
+          [
             "LASInPolygons",
             "polygons"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "geometries"
           ],
           [
             "PolygonBufferGEOS",
@@ -1993,49 +2007,12 @@
         "tolerance": 0.009999999776482582
       },
       "position": [
-        408.0,
-        219.0
+        389.0,
+        202.0
       ],
       "type": [
         "io-gdal",
         "PolygonSimplifyGEOS"
-      ]
-    },
-    "PolygonTriangulator-LoD11": {
-      "connections": {
-        "multi_triangle_collections": [
-          [
-            "PC2MeshQuality-LoD11",
-            "triangles"
-          ]
-        ],
-        "ring_ids": [
-          [
-            "PC2MeshQuality-LoD11",
-            "face_ids"
-          ]
-        ]
-      },
-      "marked_inputs": {
-        "polygons": false
-      },
-      "marked_outputs": {
-        "multi_triangle_collections": true,
-        "normals": false,
-        "ring_ids": false,
-        "triangles": false
-      },
-      "parameters": {
-        "dupe_threshold_exp": 4,
-        "output_all_triangles": false
-      },
-      "position": [
-        2801.0,
-        -455.864013671875
-      ],
-      "type": [
-        "building-reconstruction",
-        "PolygonTriangulator"
       ]
     },
     "PolygonTriangulator-LoD12": {
