@@ -8,7 +8,7 @@
     "input_footprint": [
       "Input 2D vector file with building footprint(s)",
       "str",
-      "../test-data/wippolder.gpkg"
+      ""
     ],
     "input_footprint_select": [
       "Feature number to load (value must be in the range 1 to number of features in foootprint input)",
@@ -18,7 +18,7 @@
     "input_pointcloud": [
       "Input pointcloud. Should contain building (6) and ground class (2)",
       "str",
-      "../test-data/wippolder.las"
+      ""
     ],
     "output_cityjson": [
       "CityJSON output file",
