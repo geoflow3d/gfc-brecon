@@ -95,18 +95,23 @@
       "str",
       "output/model_lod22.obj"
     ],
-    "output_vector2d": [
-      "2D vector output file or DB connection string",
+    "output_ogr": [
+      "OGR vector output file or DB connection string",
       "str",
       "output/model_2d.gpkg"
     ],
-    "output_vector2d_format": [
-      "2D vector output format (eg GPKG or PostgreSQL)",
+    "output_ogr_EPSG": [
+      "EPSG code for the Coordinate Reference System of OGR output",
+      "int",
+      7415
+    ],
+    "output_ogr_format": [
+      "OGR vector output format (eg GPKG or PostgreSQL)",
       "str",
       "GPKG"
     ],
     "output_vector_2d_overwrite": [
-      "Overwrite 2D vector output. If false then output is appended in case of existing file",
+      "Overwrite OGR vector output. If false then output is appended in case of existing file",
       "bool",
       true
     ],
@@ -126,9 +131,9 @@
       5
     ],
     "r_optimisation_data_term": [
-      "Increase to get more complex models that are closer to input pointcloud. Decrease to get a more generalised output model.",
+      "Increase to get more detailed models. Decrease to get more simplified/generalised models.",
       "float",
-      7.0
+      10.0
     ],
     "r_plane_epsilon": [
       "maximum distance between plane and its inliers",
@@ -145,30 +150,10 @@
       "int",
       15
     ],
-    "r_plane_normal_angle": [
-      "maximum angle between plane normal and inlier normal, expressed as the dot product between the two normals. Eg 1.0 is a 0 degree angle and lower values are larger angles",
-      "float",
-      0.75
-    ],
     "skip_attribute_name": [
       "name of boolean attribute in input footprints that tells if the building should be skipped for full LoD1.3+ reconstruction. Eg used for greenhouses and very big industrial buildings, since these are difficult/slow to process due to glass roofs and large footprint area.",
       "str",
       "skip"
-    ],
-    "skip_lod12": [
-      "Skip LoD12 reconstruction",
-      "bool",
-      false
-    ],
-    "skip_lod13": [
-      "Skip LoD13 reconstruction",
-      "bool",
-      false
-    ],
-    "skip_lod22": [
-      "Skip LoD22 reconstruction",
-      "bool",
-      false
     ]
   },
   "nodes": {
@@ -447,7 +432,7 @@
         "dissolve_outside_fp": true,
         "dissolve_seg_edges": false,
         "dissolve_step_edges": false,
-        "skip_execution": "{{skip_lod12}}",
+        "skip_execution": false,
         "step_height_threshold": 1.0
       },
       "position": [
@@ -488,7 +473,7 @@
         "dissolve_outside_fp": true,
         "dissolve_seg_edges": true,
         "dissolve_step_edges": true,
-        "skip_execution": "{{skip_lod13}}",
+        "skip_execution": false,
         "step_height_threshold": "{{r_lod13_step_height}}"
       },
       "position": [
@@ -529,7 +514,7 @@
         "dissolve_outside_fp": true,
         "dissolve_seg_edges": true,
         "dissolve_step_edges": false,
-        "skip_execution": "{{skip_lod22}}",
+        "skip_execution": false,
         "step_height_threshold": 1.0
       },
       "position": [
@@ -845,7 +830,10 @@
         "meta_referenceSystem": "{{output_cj_referenceSystem}}",
         "meta_title": "{{output_cj_title}}",
         "output_attribute_names": {},
-        "prettyPrint": false
+        "prettyPrint": false,
+        "skip_LoD12": false,
+        "skip_LoD13": false,
+        "skip_LoD22": false
       },
       "position": [
         4553.0,
@@ -1083,7 +1071,7 @@
         "metrics_plane_epsilon": "{{r_plane_epsilon}}",
         "metrics_plane_k": "{{r_plane_k}}",
         "metrics_plane_min_points": "{{r_plane_min_points}}",
-        "metrics_plane_normal_threshold": "{{r_plane_normal_angle}}",
+        "metrics_plane_normal_threshold": 0.75,
         "n_refit": 5,
         "only_horizontal": false
       },
@@ -1139,7 +1127,7 @@
         "metrics_plane_epsilon": "{{r_plane_epsilon}}",
         "metrics_plane_k": "{{r_plane_k}}",
         "metrics_plane_min_points": "{{r_plane_min_points}}",
-        "metrics_plane_normal_threshold": "{{r_plane_normal_angle}}",
+        "metrics_plane_normal_threshold": 0.75,
         "n_refit": 10,
         "only_horizontal": true
       },
@@ -1540,9 +1528,9 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "{{output_vector2d_format}}",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD11",
         "output_attribute_names": {},
         "overwrite": "{{output_vector_2d_overwrite}}",
@@ -1565,9 +1553,9 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "{{output_vector2d_format}}",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD12",
         "output_attribute_names": {},
         "overwrite": "{{output_vector_2d_overwrite}}",
@@ -1590,13 +1578,13 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "GPKG",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD12_3D",
         "output_attribute_names": {},
         "overwrite": "{{output_vector_2d_overwrite}}",
-        "require_attributes": false,
+        "require_attributes": true,
         "transaction_batch_size_": 1000
       },
       "position": [
@@ -1615,9 +1603,9 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "{{output_vector2d_format}}",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD13",
         "output_attribute_names": {},
         "overwrite": "{{output_vector_2d_overwrite}}",
@@ -1640,13 +1628,13 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "GPKG",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD13_3D",
         "output_attribute_names": {},
         "overwrite": "{{output_vector_2d_overwrite}}",
-        "require_attributes": false,
+        "require_attributes": true,
         "transaction_batch_size_": 1000
       },
       "position": [
@@ -1665,9 +1653,9 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "{{output_vector2d_format}}",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD22",
         "output_attribute_names": {},
         "overwrite": "{{output_vector_2d_overwrite}}",
@@ -1690,13 +1678,13 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "GPKG",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD22_3D",
         "output_attribute_names": {},
         "overwrite": "{{output_vector_2d_overwrite}}",
-        "require_attributes": false,
+        "require_attributes": true,
         "transaction_batch_size_": 1000
       },
       "position": [
