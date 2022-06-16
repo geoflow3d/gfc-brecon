@@ -110,7 +110,7 @@
       "str",
       "GPKG"
     ],
-    "output_vector_2d_overwrite": [
+    "output_ogr_overwrite": [
       "Overwrite OGR vector output. If false then output is appended in case of existing file",
       "bool",
       true
@@ -1533,7 +1533,7 @@
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD11",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1558,7 +1558,7 @@
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD12",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1583,7 +1583,7 @@
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD12_3D",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1608,7 +1608,7 @@
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD13",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1633,7 +1633,7 @@
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD13_3D",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1658,7 +1658,7 @@
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD22",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1683,7 +1683,7 @@
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD22_3D",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
