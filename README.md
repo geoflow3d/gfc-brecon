@@ -2,8 +2,17 @@
 This repository contains the flowcharts to get started with building reconstruction with the Geoflow software.
 
 ## How to do it
-From the root of this repository run
+Download some test data from `https://data.3dgi.xyz/geoflow-test-data/wippolder.zip` and unzip into `test-data` directory in this repository:
+```
+wget https://data.3dgi.xyz/geoflow-test-data/wippolder.zip
+unzip wippolder.zip -b test-data
+```
+
+Then from the root of this repository run:
 
 ```
-geof crop.json
-find reconstruct/crop/*/config.toml | parallel geof reconstruct.json --config {1} --log {1}.log
+geof single/reconstruct.json \
+  --input_footprint=test-data/wippolder.gpkg \
+  --input_pointcloud=test-data/wippolder.las \
+  --config single/config.toml
+```

@@ -95,18 +95,23 @@
       "str",
       "output/model_lod22.obj"
     ],
-    "output_vector2d": [
-      "2D vector output file or DB connection string",
+    "output_ogr": [
+      "OGR vector output file or DB connection string",
       "str",
       "output/model_2d.gpkg"
     ],
-    "output_vector2d_format": [
-      "2D vector output format (eg GPKG or PostgreSQL)",
+    "output_ogr_EPSG": [
+      "EPSG code for the Coordinate Reference System of OGR output",
+      "int",
+      7415
+    ],
+    "output_ogr_format": [
+      "OGR vector output format (eg GPKG or PostgreSQL)",
       "str",
       "GPKG"
     ],
-    "output_vector_2d_overwrite": [
-      "Overwrite 2D vector output. If false then output is appended in case of existing file",
+    "output_ogr_overwrite": [
+      "Overwrite OGR vector output. If false then output is appended in case of existing file",
       "bool",
       true
     ],
@@ -126,9 +131,9 @@
       5
     ],
     "r_optimisation_data_term": [
-      "Increase to get more complex models that are closer to input pointcloud. Decrease to get a more generalised output model.",
+      "Increase to get more detailed models. Decrease to get more simplified/generalised models.",
       "float",
-      7.0
+      10.0
     ],
     "r_plane_epsilon": [
       "maximum distance between plane and its inliers",
@@ -145,30 +150,10 @@
       "int",
       15
     ],
-    "r_plane_normal_angle": [
-      "maximum angle between plane normal and inlier normal, expressed as the dot product between the two normals. Eg 1.0 is a 0 degree angle and lower values are larger angles",
-      "float",
-      0.75
-    ],
     "skip_attribute_name": [
       "name of boolean attribute in input footprints that tells if the building should be skipped for full LoD1.3+ reconstruction. Eg used for greenhouses and very big industrial buildings, since these are difficult/slow to process due to glass roofs and large footprint area.",
       "str",
       "skip"
-    ],
-    "skip_lod12": [
-      "Skip LoD12 reconstruction",
-      "bool",
-      false
-    ],
-    "skip_lod13": [
-      "Skip LoD13 reconstruction",
-      "bool",
-      false
-    ],
-    "skip_lod22": [
-      "Skip LoD22 reconstruction",
-      "bool",
-      false
     ]
   },
   "nodes": {
@@ -394,11 +379,19 @@
           [
             "CityJSONWriter",
             "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
           ]
         ],
         "global_elevation_70p": [
           [
             "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
             "attributes"
           ]
         ],
@@ -406,11 +399,19 @@
           [
             "CityJSONWriter",
             "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
           ]
         ],
         "global_elevation_min": [
           [
             "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
             "attributes"
           ]
         ]
@@ -431,7 +432,7 @@
         "dissolve_outside_fp": true,
         "dissolve_seg_edges": false,
         "dissolve_step_edges": false,
-        "skip_execution": "{{skip_lod12}}",
+        "skip_execution": false,
         "step_height_threshold": 1.0
       },
       "position": [
@@ -472,7 +473,7 @@
         "dissolve_outside_fp": true,
         "dissolve_seg_edges": true,
         "dissolve_step_edges": true,
-        "skip_execution": "{{skip_lod13}}",
+        "skip_execution": false,
         "step_height_threshold": "{{r_lod13_step_height}}"
       },
       "position": [
@@ -513,7 +514,7 @@
         "dissolve_outside_fp": true,
         "dissolve_seg_edges": true,
         "dissolve_step_edges": false,
-        "skip_execution": "{{skip_lod22}}",
+        "skip_execution": false,
         "step_height_threshold": 1.0
       },
       "position": [
@@ -829,11 +830,14 @@
         "meta_referenceSystem": "{{output_cj_referenceSystem}}",
         "meta_title": "{{output_cj_title}}",
         "output_attribute_names": {},
-        "prettyPrint": false
+        "prettyPrint": false,
+        "skip_LoD12": false,
+        "skip_LoD13": false,
+        "skip_LoD22": false
       },
       "position": [
-        4520.0,
-        369.0
+        4553.0,
+        444.0
       ],
       "type": [
         "CoreIO",
@@ -845,6 +849,10 @@
         "data_coverage": [
           [
             "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
             "attributes"
           ]
         ]
@@ -930,10 +938,6 @@
             "pts_per_roofplane"
           ],
           [
-            "PC2MeshQuality-LoD11",
-            "ipoints"
-          ],
-          [
             "PC2MeshQuality-LoD12",
             "ipoints"
           ],
@@ -998,7 +1002,17 @@
             "attributes_A"
           ]
         ],
+        "roof_pt_cnt": [
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ],
         "roof_type": [
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ],
           [
             "SkipReplaceTester",
             "roof_type"
@@ -1057,7 +1071,7 @@
         "metrics_plane_epsilon": "{{r_plane_epsilon}}",
         "metrics_plane_k": "{{r_plane_k}}",
         "metrics_plane_min_points": "{{r_plane_min_points}}",
-        "metrics_plane_normal_threshold": "{{r_plane_normal_angle}}",
+        "metrics_plane_normal_threshold": 0.75,
         "n_refit": 5,
         "only_horizontal": false
       },
@@ -1113,7 +1127,7 @@
         "metrics_plane_epsilon": "{{r_plane_epsilon}}",
         "metrics_plane_k": "{{r_plane_k}}",
         "metrics_plane_min_points": "{{r_plane_min_points}}",
-        "metrics_plane_normal_threshold": "{{r_plane_normal_angle}}",
+        "metrics_plane_normal_threshold": 0.75,
         "n_refit": 10,
         "only_horizontal": true
       },
@@ -1253,6 +1267,10 @@
           [
             "LOD1Extruder-LoD11",
             "floor_elevation"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
           ]
         ],
         "point_clouds": [
@@ -1301,10 +1319,6 @@
           [
             "FacesSelector-LoD22",
             "faces_A"
-          ],
-          [
-            "PolygonTriangulator-LoD11",
-            "polygons"
           ]
         ]
       },
@@ -1440,6 +1454,18 @@
           [
             "OGRWriter-LoD11",
             "attributes"
+          ],
+          [
+            "OGRWriter-LoD12-3D",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD13-3D",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD22-3D",
+            "attributes"
           ]
         ],
         "linear_rings": [
@@ -1460,20 +1486,12 @@
             "footprint"
           ],
           [
-            "CityJSONWriter",
-            "footprints"
-          ],
-          [
             "DataCoverageCalc",
             "footprint_polygon"
           ],
           [
             "LOD1Extruder-LoD11",
             "polygon"
-          ],
-          [
-            "OGRWriter-LoD11",
-            "geometries"
           ],
           [
             "PolygonSimplifyGEOS",
@@ -1496,7 +1514,7 @@
       },
       "position": [
         455.5,
-        65.0679931640625
+        47.0679931640625
       ],
       "type": [
         "io-gdal",
@@ -1510,18 +1528,18 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "{{output_vector2d_format}}",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD11",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
       "position": [
-        4505.0,
-        -128.0
+        4540.0,
+        -246.0
       ],
       "type": [
         "io-gdal",
@@ -1535,12 +1553,12 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "{{output_vector2d_format}}",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD12",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1560,12 +1578,12 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "GPKG",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD12_3D",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1585,12 +1603,12 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "{{output_vector2d_format}}",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD13",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1610,12 +1628,12 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "GPKG",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD13_3D",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1635,12 +1653,12 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "{{output_vector2d_format}}",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD22",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1660,12 +1678,12 @@
       },
       "parameters": {
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{output_vector2d}}",
-        "gdaldriver": "GPKG",
+        "epsg": "{{output_ogr_EPSG}}",
+        "filepath": "{{output_ogr}}",
+        "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD22_3D",
         "output_attribute_names": {},
-        "overwrite": "{{output_vector_2d_overwrite}}",
+        "overwrite": "{{output_ogr_overwrite}}",
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1743,31 +1761,19 @@
         "OptimiseArrangmentGrid"
       ]
     },
-    "PC2MeshQuality-LoD11": {
-      "marked_inputs": {
-        "face_ids": false,
-        "ipoints": false,
-        "triangles": false
-      },
-      "marked_outputs": {
-        "error_hist": true,
-        "face_errors": false,
-        "m2pc_error_hist": true,
-        "m2pc_error_max": true,
-        "mesh_error": false,
-        "mesh_error_f": true,
-        "point_errors": false
-      },
-      "position": [
-        2795.0,
-        -375.864013671875
-      ],
-      "type": [
-        "building-reconstruction",
-        "PC2MeshQuality"
-      ]
-    },
     "PC2MeshQuality-LoD12": {
+      "connections": {
+        "mesh_error_f": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "face_ids": false,
         "ipoints": false,
@@ -1792,6 +1798,18 @@
       ]
     },
     "PC2MeshQuality-LoD13": {
+      "connections": {
+        "mesh_error_f": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "face_ids": false,
         "ipoints": false,
@@ -1816,6 +1834,18 @@
       ]
     },
     "PC2MeshQuality-LoD22": {
+      "connections": {
+        "mesh_error_f": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "face_ids": false,
         "ipoints": false,
@@ -1938,8 +1968,16 @@
       "connections": {
         "simplified_polygons": [
           [
+            "CityJSONWriter",
+            "footprints"
+          ],
+          [
             "LASInPolygons",
             "polygons"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "geometries"
           ],
           [
             "PolygonBufferGEOS",
@@ -1957,49 +1995,12 @@
         "tolerance": 0.009999999776482582
       },
       "position": [
-        408.0,
-        219.0
+        389.0,
+        202.0
       ],
       "type": [
         "io-gdal",
         "PolygonSimplifyGEOS"
-      ]
-    },
-    "PolygonTriangulator-LoD11": {
-      "connections": {
-        "multi_triangle_collections": [
-          [
-            "PC2MeshQuality-LoD11",
-            "triangles"
-          ]
-        ],
-        "ring_ids": [
-          [
-            "PC2MeshQuality-LoD11",
-            "face_ids"
-          ]
-        ]
-      },
-      "marked_inputs": {
-        "polygons": false
-      },
-      "marked_outputs": {
-        "multi_triangle_collections": true,
-        "normals": false,
-        "ring_ids": false,
-        "triangles": false
-      },
-      "parameters": {
-        "dupe_threshold_exp": 4,
-        "output_all_triangles": false
-      },
-      "position": [
-        2801.0,
-        -455.864013671875
-      ],
-      "type": [
-        "building-reconstruction",
-        "PolygonTriangulator"
       ]
     },
     "PolygonTriangulator-LoD12": {
@@ -2010,12 +2011,12 @@
             "triangles"
           ],
           [
-            "PC2MeshQuality-LoD12",
-            "triangles"
-          ],
-          [
             "OGRWriter-LoD12-3D",
             "geometries"
+          ],
+          [
+            "PC2MeshQuality-LoD12",
+            "triangles"
           ]
         ],
         "ring_ids": [
@@ -2055,12 +2056,12 @@
             "triangles"
           ],
           [
-            "PC2MeshQuality-LoD13",
-            "triangles"
-          ],
-          [
             "OGRWriter-LoD13-3D",
             "geometries"
+          ],
+          [
+            "PC2MeshQuality-LoD13",
+            "triangles"
           ]
         ],
         "ring_ids": [
@@ -2100,12 +2101,12 @@
             "triangles"
           ],
           [
-            "PC2MeshQuality-LoD22",
-            "triangles"
-          ],
-          [
             "OGRWriter-LoD22-3D",
             "geometries"
+          ],
+          [
+            "PC2MeshQuality-LoD22",
+            "triangles"
           ]
         ],
         "ring_ids": [
@@ -2373,6 +2374,18 @@
       ]
     },
     "Validator-LoD12": {
+      "connections": {
+        "errors": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "input_geom": false
       },
@@ -2396,6 +2409,18 @@
       ]
     },
     "Validator-LoD13": {
+      "connections": {
+        "errors": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "input_geom": false
       },
@@ -2419,6 +2444,18 @@
       ]
     },
     "Validator-LoD22": {
+      "connections": {
+        "errors": [
+          [
+            "CityJSONWriter",
+            "attributes"
+          ],
+          [
+            "OGRWriter-LoD11",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "input_geom": false
       },
