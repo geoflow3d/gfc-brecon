@@ -1548,6 +1548,7 @@
         "edges_out_": false,
         "exact_footprint_out": false,
         "exact_regularised_edges": false,
+        "n_angle_clusters": false,
         "priorities": false,
         "regularised_edges": false
       },
