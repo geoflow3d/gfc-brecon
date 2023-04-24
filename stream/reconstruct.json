@@ -359,6 +359,7 @@
         "arrangement": false,
         "global_elevation_50p": true,
         "global_elevation_70p": true,
+        "global_elevation_97p": false,
         "global_elevation_max": true,
         "global_elevation_min": true
       },
@@ -400,6 +401,7 @@
         "arrangement": false,
         "global_elevation_50p": false,
         "global_elevation_70p": false,
+        "global_elevation_97p": false,
         "global_elevation_max": false,
         "global_elevation_min": false
       },
@@ -441,6 +443,7 @@
         "arrangement": false,
         "global_elevation_50p": false,
         "global_elevation_70p": false,
+        "global_elevation_97p": false,
         "global_elevation_max": false,
         "global_elevation_min": false
       },
@@ -485,6 +488,7 @@
         "do_floor": true,
         "do_roofs": true,
         "do_walls": true,
+        "lod1_extrude_to_max": false,
         "snap_tolerance_exp": 4
       },
       "position": [
@@ -520,6 +524,7 @@
         "do_floor": true,
         "do_roofs": true,
         "do_walls": true,
+        "lod1_extrude_to_max": false,
         "snap_tolerance_exp": 4
       },
       "position": [
@@ -555,6 +560,7 @@
         "do_floor": true,
         "do_roofs": true,
         "do_walls": true,
+        "lod1_extrude_to_max": false,
         "snap_tolerance_exp": 4
       },
       "position": [
@@ -567,20 +573,6 @@
       ]
     },
     "AttrRingsSelector-LoD12": {
-      "connections": {
-        "attributes": [
-          [
-            "OGRWriter-LoD12",
-            "attributes"
-          ]
-        ],
-        "linear_rings": [
-          [
-            "OGRWriter-LoD12",
-            "geometries"
-          ]
-        ]
-      },
       "marked_inputs": {
         "attributes_A": true,
         "attributes_B": false,
@@ -603,20 +595,6 @@
       ]
     },
     "AttrRingsSelector-LoD13": {
-      "connections": {
-        "attributes": [
-          [
-            "OGRWriter-LoD13",
-            "attributes"
-          ]
-        ],
-        "linear_rings": [
-          [
-            "OGRWriter-LoD13",
-            "geometries"
-          ]
-        ]
-      },
       "marked_inputs": {
         "attributes_A": true,
         "attributes_B": false,
@@ -639,20 +617,6 @@
       ]
     },
     "AttrRingsSelector-LoD22": {
-      "connections": {
-        "attributes": [
-          [
-            "OGRWriter-LoD22",
-            "attributes"
-          ]
-        ],
-        "linear_rings": [
-          [
-            "OGRWriter-LoD22",
-            "geometries"
-          ]
-        ]
-      },
       "marked_inputs": {
         "attributes_A": true,
         "attributes_B": false,
@@ -752,8 +716,10 @@
         "part_attributes": false
       },
       "parameters": {
+        "CRS": "EPSG:7415",
         "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/{{BID}}.city.jsonl",
         "identifier_attribute": "",
+        "only_output_renamed": false,
         "output_attribute_names": {},
         "prettyPrint": false,
         "scale_x": "{{CITYJSON_SCALE_X}}",
@@ -770,24 +736,6 @@
       "type": [
         "CoreIO",
         "CityJSONFeatureWriter"
-      ]
-    },
-    "DataCoverageCalc": {
-      "marked_inputs": {
-        "data_area": false,
-        "footprint_polygon": true,
-        "ground_parts": false
-      },
-      "marked_outputs": {
-        "data_coverage": true
-      },
-      "position": [
-        2021.5,
-        563.8179931640625
-      ],
-      "type": [
-        "building-reconstruction",
-        "DataCoverageCalc"
       ]
     },
     "DetectLines": {
@@ -850,6 +798,14 @@
             "pts_per_roofplane"
           ],
           [
+            "PC2MeshQuality-LoD22",
+            "ipoints"
+          ],
+          [
+            "PlaneIntersect",
+            "pts_per_roofplane"
+          ],
+          [
             "OptimiseArrangmentGrid",
             "pts_per_roofplane"
           ],
@@ -864,14 +820,6 @@
           [
             "PC2MeshQuality-LoD13",
             "ipoints"
-          ],
-          [
-            "PC2MeshQuality-LoD22",
-            "ipoints"
-          ],
-          [
-            "PlaneIntersect",
-            "pts_per_roofplane"
           ],
           [
             "SegmentRasterise",
@@ -1211,7 +1159,8 @@
         "do_filter": false,
         "filepath": "{{INPUT_POINTCLOUD}}",
         "filter_class": 6,
-        "thin_nth": "{{thin_nth}}"
+        "thin_nth": "{{thin_nth}}",
+        "wkt": ""
       },
       "position": [
         389.5,
@@ -1346,10 +1295,6 @@
           [
             "OBJVecWriter-LoD22",
             "attributes"
-          ],
-          [
-            "OGRWriter-LoD11",
-            "attributes"
           ]
         ],
         "linear_rings": [
@@ -1374,16 +1319,8 @@
             "footprints"
           ],
           [
-            "DataCoverageCalc",
-            "footprint_polygon"
-          ],
-          [
             "LOD1Extruder-LoD11",
             "polygon"
-          ],
-          [
-            "OGRWriter-LoD11",
-            "geometries"
           ]
         ]
       },
@@ -1395,9 +1332,12 @@
         "linear_rings": false
       },
       "parameters": {
+        "attribute_filter": "",
         "base_elevation": 0.0,
         "filepath": "{{INPUT_FOOTPRINT}}",
-        "layer_id": 0
+        "layer_id": 0,
+        "layer_name": "",
+        "output_fid": false
       },
       "position": [
         453.5,
@@ -1406,106 +1346,6 @@
       "type": [
         "io-gdal",
         "OGRLoader"
-      ]
-    },
-    "OGRWriter-LoD11": {
-      "marked_inputs": {
-        "attributes": false,
-        "geometries": false
-      },
-      "parameters": {
-        "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/{{BID}}.gpkg",
-        "gdaldriver": "GPKG",
-        "layername": "LoD11",
-        "output_attribute_names": {},
-        "overwrite": false,
-        "require_attributes": true,
-        "transaction_batch_size_": 1000
-      },
-      "position": [
-        4505.0,
-        -128.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
-      ]
-    },
-    "OGRWriter-LoD12": {
-      "marked_inputs": {
-        "attributes": false,
-        "geometries": false
-      },
-      "parameters": {
-        "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/{{BID}}.gpkg",
-        "gdaldriver": "GPKG",
-        "layername": "LoD12",
-        "output_attribute_names": {},
-        "overwrite": false,
-        "require_attributes": true,
-        "transaction_batch_size_": 1000
-      },
-      "position": [
-        4511.0,
-        -56.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
-      ]
-    },
-    "OGRWriter-LoD13": {
-      "marked_inputs": {
-        "attributes": false,
-        "geometries": false
-      },
-      "parameters": {
-        "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/{{BID}}.gpkg",
-        "gdaldriver": "GPKG",
-        "layername": "LoD13",
-        "output_attribute_names": {},
-        "overwrite": false,
-        "require_attributes": true,
-        "transaction_batch_size_": 1000
-      },
-      "position": [
-        4523.0,
-        161.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
-      ]
-    },
-    "OGRWriter-LoD22": {
-      "marked_inputs": {
-        "attributes": false,
-        "geometries": false
-      },
-      "parameters": {
-        "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{BID}}/reconstruct/{{BID}}.gpkg",
-        "gdaldriver": "GPKG",
-        "layername": "LoD22",
-        "output_attribute_names": {},
-        "overwrite": false,
-        "require_attributes": true,
-        "transaction_batch_size_": 1000
-      },
-      "position": [
-        4541.0,
-        664.0
-      ],
-      "type": [
-        "io-gdal",
-        "OGRWriter"
       ]
     },
     "OptimiseArrangmentGrid": {
@@ -1536,10 +1376,6 @@
           [
             "Arr2LinearRings-LoD22",
             "groundparts"
-          ],
-          [
-            "DataCoverageCalc",
-            "ground_parts"
           ]
         ]
       },
@@ -1687,6 +1523,7 @@
       },
       "parameters": {
         "min_dist_to_line": 1.0,
+        "min_length": 0.0,
         "min_neighb_pts": 5
       },
       "position": [
@@ -1873,6 +1710,7 @@
         "edges_out_": false,
         "exact_footprint_out": false,
         "exact_regularised_edges": false,
+        "n_angle_clusters": false,
         "priorities": false,
         "regularised_edges": false
       },
@@ -1893,12 +1731,6 @@
     },
     "SegmentRasterise": {
       "connections": {
-        "data_area": [
-          [
-            "DataCoverageCalc",
-            "data_area"
-          ]
-        ],
         "heightfield": [
           [
             "ArrDissolve-LoD12",
@@ -1973,10 +1805,6 @@
           [
             "FacesSelector-LoD22",
             "replace"
-          ],
-          [
-            "OGRWriter-LoD11",
-            "attributes"
           ]
         ],
         "roof_type": [
@@ -1999,10 +1827,6 @@
           [
             "AttrRingsSelector-LoD13",
             "attributes_A"
-          ],
-          [
-            "OGRWriter-LoD11",
-            "attributes"
           ]
         ],
         "skip": [
@@ -2029,10 +1853,6 @@
           [
             "FacesSelector-LoD22",
             "skip"
-          ],
-          [
-            "OGRWriter-LoD11",
-            "attributes"
           ]
         ]
       },
