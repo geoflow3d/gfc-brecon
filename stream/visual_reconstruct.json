@@ -3,7 +3,7 @@
     "BID": [
       "Building identifier",
       "str",
-      "8469"
+      "NL.IMBAG.Pand.0518100000345578"
     ],
     "CITYJSON_SCALE_X": [
       "",
@@ -23,12 +23,12 @@
     "DATASET_TITLE": [
       "",
       "str",
-      "CollegeStationT"
+      "DenHaag2020_test"
     ],
     "GF_PROCESS_CRS": [
       "",
       "str",
-      "EPSG:6343"
+      "EPSG:7415"
     ],
     "GF_PROCESS_OFFSET_OVERRIDE": [
       "",
@@ -38,12 +38,12 @@
     "GF_PROCESS_OFFSET_X": [
       "offset in X coordinate",
       "float",
-      758928.0
+      83449.484375
     ],
     "GF_PROCESS_OFFSET_Y": [
       "offset in Y coordinate",
       "float",
-      3391283.5
+      455339.40625
     ],
     "GF_PROCESS_OFFSET_Z": [
       "offset in Z coordinate",
@@ -53,22 +53,22 @@
     "GROUND_ELEVATION": [
       "",
       "float",
-      88.80000305175781
+      1.2199959754943848
     ],
     "INPUT_FOOTPRINT": [
       "",
       "str",
-      "/output/CollegeStationT/0/objects/8469/crop/footprint.gpkg"
+      "/output/DenHaag2020_test/0/objects/NL.IMBAG.Pand.0518100000345578/crop/footprint.gpkg"
     ],
     "INPUT_POINTCLOUD": [
       "",
       "str",
-      "/output/CollegeStationT/0/objects/8469/crop/points.las"
+      "/output/DenHaag2020_test/0/objects/NL.IMBAG.Pand.0518100000345578/crop/points.las"
     ],
     "OUTPUT_CRS": [
       "",
       "str",
-      "EPSG:6343"
+      "EPSG:7415"
     ],
     "OUTPUT_DIR": [
       "",
@@ -93,12 +93,12 @@
     "U_SOURCE": [
       "",
       "str",
-      "3DEP"
+      "KAdaster"
     ],
     "U_SURVEY_DATE": [
       "",
       "str",
-      "1-1-1970"
+      "2020"
     ],
     "clip_ground": [
       "",
@@ -108,17 +108,12 @@
     "line_detect__epsilon": [
       "",
       "float",
-      1.0
+      0.4000000059604645
     ],
     "lod13__step_height": [
       "",
       "float",
       3.0
-    ],
-    "lod1_extrude_to_max": [
-      "",
-      "bool",
-      false
     ],
     "normal_estimate__k": [
       "",
@@ -128,7 +123,7 @@
     "optimisation_data_term": [
       "",
       "float",
-      8.0
+      5.0
     ],
     "plane_detect__epsilon": [
       "",
@@ -138,12 +133,12 @@
     "plane_detect__k": [
       "",
       "int",
-      15
+      30
     ],
     "plane_detect__min_points": [
       "",
       "int",
-      15
+      60
     ],
     "plane_detect__normal_angle": [
       "",
@@ -183,17 +178,17 @@
     "thres_alpha": [
       "",
       "float",
-      0.5
+      0.25
     ],
     "thres_reg_line_dist": [
       "",
       "float",
-      1.0
+      0.5
     ],
     "thres_reg_line_ext": [
       "",
       "float",
-      3.0
+      1.5
     ],
     "thres_tri_snap": [
       "",
@@ -202,9 +197,30 @@
     ]
   },
   "nodes": {
+    "Alpha shape": {
+      "marked_inputs": {
+        "attributes": false,
+        "colormap": false,
+        "colors": false,
+        "geometries": false,
+        "normals": false
+      },
+      "position": [
+        1251.0,
+        20.0
+      ],
+      "type": [
+        "Visualisation",
+        "VectorPainter"
+      ]
+    },
     "AlphaShape": {
       "connections": {
         "alpha_rings": [
+          [
+            "Alpha shape",
+            "geometries"
+          ],
           [
             "DetectLines",
             "edge_points"
@@ -343,8 +359,8 @@
         "global_elevation_50p": true,
         "global_elevation_70p": true,
         "global_elevation_97p": false,
-        "global_elevation_max": false,
-        "global_elevation_min": false
+        "global_elevation_max": true,
+        "global_elevation_min": true
       },
       "parameters": {
         "dissolve_all_interior": true,
@@ -387,7 +403,7 @@
         "do_floor": true,
         "do_roofs": true,
         "do_walls": true,
-        "lod1_extrude_to_max": "{{lod1_extrude_to_max}}",
+        "lod1_extrude_to_max": true,
         "snap_tolerance_exp": 4
       },
       "position": [
@@ -423,7 +439,7 @@
         "do_floor": true,
         "do_roofs": true,
         "do_walls": true,
-        "lod1_extrude_to_max": "{{lod1_extrude_to_max}}",
+        "lod1_extrude_to_max": true,
         "snap_tolerance_exp": 4
       },
       "position": [
@@ -437,6 +453,12 @@
     },
     "ArrExtruder-LoD22": {
       "connections": {
+        "faces": [
+          [
+            "m.Wireframe",
+            "geometries"
+          ]
+        ],
         "multisolid": [
           [
             "FacesSelector-LoD22",
@@ -469,6 +491,37 @@
       "type": [
         "building-reconstruction",
         "ArrExtruder"
+      ]
+    },
+    "AttributeCalc": {
+      "connections": {
+        "attributes": [
+          [
+            "CityJSONFeatureWriter",
+            "attributes"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "attributes": false
+      },
+      "marked_outputs": {
+        "attributes": false
+      },
+      "parameters": {
+        "as_string": false,
+        "attribute_expressions": {
+          "floors": "if(a.DetectPlanes.roof_type == 'slanted') {\n\t(a.DetectPlanes.roof_elevation_max-a.Ground_elevation.value)/3 - 0.5;\n} else {\n\t(a.DetectPlanes.roof_elevation_max-a.Ground_elevation.value)/3;\n}",
+          "height": "a.DetectPlanes.roof_elevation_max - a.Ground_elevation.value"
+        }
+      },
+      "position": [
+        4212.0,
+        -176.0
+      ],
+      "type": [
+        "Core",
+        "AttributeCalc"
       ]
     },
     "AttributeTester": {
@@ -588,6 +641,36 @@
       "type": [
         "building-reconstruction",
         "BuildingRasterise"
+      ]
+    },
+    "CalcOptimalLOD": {
+      "connections": {
+        "attributes": [
+          [
+            "CityJSONFeatureWriter",
+            "attributes"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "attributes": false
+      },
+      "marked_outputs": {
+        "attributes": false
+      },
+      "parameters": {
+        "as_string": true,
+        "attribute_expressions": {
+          "optimal_lod": "if(a.OGRLoader.r_nodata > 3.5) {\n\tstr_result := '1.2';\n} else {\n\tstr_result := '2.2';\n}"
+        }
+      },
+      "position": [
+        814.0,
+        -290.0
+      ],
+      "type": [
+        "Core",
+        "AttributeCalc"
       ]
     },
     "CityJSONFeatureWriter": {
@@ -732,6 +815,10 @@
         ],
         "roof_elevation_max": [
           [
+            "AttributeCalc",
+            "attributes"
+          ],
+          [
             "CityJSONFeatureWriter",
             "attributes"
           ],
@@ -741,6 +828,10 @@
           ]
         ],
         "roof_elevation_min": [
+          [
+            "AttributeCalc",
+            "attributes"
+          ],
           [
             "CityJSONFeatureWriter",
             "attributes"
@@ -754,6 +845,10 @@
         ],
         "roof_type": [
           [
+            "AttributeCalc",
+            "attributes"
+          ],
+          [
             "CityJSONFeatureWriter",
             "attributes"
           ],
@@ -762,7 +857,17 @@
             "roof_type"
           ]
         ],
+        "total_roofplane_cnt": [
+          [
+            "CalcOptimalLOD",
+            "attributes"
+          ]
+        ],
         "unsegmented_pt_cnt": [
+          [
+            "CalcOptimalLOD",
+            "attributes"
+          ],
           [
             "CityJSONFeatureWriter",
             "attributes"
@@ -868,8 +973,8 @@
         "use_ransac": "{{plane_detect_ransac}}"
       },
       "position": [
-        918.0,
-        468.0
+        900.0,
+        455.0
       ],
       "type": [
         "building-reconstruction",
@@ -981,6 +1086,30 @@
         "FacesSelector"
       ]
     },
+    "FeatureType": {
+      "connections": {
+        "value": [
+          [
+            "CityJSONFeatureWriter",
+            "attributes"
+          ]
+        ]
+      },
+      "marked_outputs": {
+        "value": false
+      },
+      "parameters": {
+        "value": "building"
+      },
+      "position": [
+        4611.0,
+        25.0
+      ],
+      "type": [
+        "Core",
+        "Text"
+      ]
+    },
     "Ground_elevation": {
       "connections": {
         "value": [
@@ -995,6 +1124,10 @@
           [
             "ArrExtruder-LoD22",
             "floor_elevation"
+          ],
+          [
+            "AttributeCalc",
+            "attributes"
           ],
           [
             "BuildingRasterise",
@@ -1028,6 +1161,10 @@
     "LASLoader": {
       "connections": {
         "points": [
+          [
+            "Points",
+            "geometries"
+          ],
           [
             "SplitGroundBuilding",
             "point_cloud"
@@ -1108,6 +1245,10 @@
         "attributes": [
           [
             "AttributeTester",
+            "attributes"
+          ],
+          [
+            "CalcOptimalLOD",
             "attributes"
           ],
           [
@@ -1355,6 +1496,23 @@
         "PlaneIntersect"
       ]
     },
+    "Points": {
+      "marked_inputs": {
+        "attributes": false,
+        "colormap": false,
+        "colors": false,
+        "geometries": false,
+        "normals": false
+      },
+      "position": [
+        1038.0,
+        -123.0
+      ],
+      "type": [
+        "Visualisation",
+        "VectorPainter"
+      ]
+    },
     "PolygonTriangulator-LoD11": {
       "connections": {
         "multi_triangle_collections": [
@@ -1474,10 +1632,22 @@
             "triangles"
           ]
         ],
+        "normals": [
+          [
+            "m.Mesh",
+            "normals"
+          ]
+        ],
         "ring_ids": [
           [
             "PC2MeshQuality-LoD22",
             "face_ids"
+          ]
+        ],
+        "triangles": [
+          [
+            "m.Mesh",
+            "geometries"
           ]
         ]
       },
@@ -1512,6 +1682,10 @@
           ]
         ],
         "n_angle_clusters": [
+          [
+            "CalcOptimalLOD",
+            "attributes"
+          ],
           [
             "CityJSONFeatureWriter",
             "attributes"
@@ -1755,7 +1929,7 @@
       "marked_outputs": {
         "error_faces": false,
         "error_locations": false,
-        "errors": false
+        "errors": true
       },
       "parameters": {
         "log_invalids": false,
@@ -1833,6 +2007,40 @@
         "Validator"
       ]
     },
+    "m.Mesh": {
+      "marked_inputs": {
+        "attributes": false,
+        "colormap": false,
+        "colors": false,
+        "geometries": false,
+        "normals": false
+      },
+      "position": [
+        3917.0,
+        689.0
+      ],
+      "type": [
+        "Visualisation",
+        "VectorPainter"
+      ]
+    },
+    "m.Wireframe": {
+      "marked_inputs": {
+        "attributes": false,
+        "colormap": false,
+        "colors": false,
+        "geometries": false,
+        "normals": false
+      },
+      "position": [
+        3495.0,
+        684.0
+      ],
+      "type": [
+        "Visualisation",
+        "VectorPainter"
+      ]
+    },
     "method": {
       "connections": {
         "value": [
@@ -1899,6 +2107,30 @@
       "position": [
         4614.0,
         71.0
+      ],
+      "type": [
+        "Core",
+        "Text"
+      ]
+    },
+    "textures": {
+      "connections": {
+        "value": [
+          [
+            "CityJSONFeatureWriter",
+            "attributes"
+          ]
+        ]
+      },
+      "marked_outputs": {
+        "value": false
+      },
+      "parameters": {
+        "value": "no"
+      },
+      "position": [
+        4617.0,
+        198.0
       ],
       "type": [
         "Core",

@@ -6,7 +6,7 @@
         "value": false
       },
       "parameters": {
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{identificatie}}/config.toml"
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{polygon_tile_ids}}/objects/{{BID}}/config.toml"
       },
       "position": [
         418.0,
@@ -22,7 +22,8 @@
         "point_clouds": true
       },
       "parameters": {
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{identificatie}}/crop/points.las"
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{polygon_tile_ids}}/objects/{{BID}}/crop/points.las",
+        "output_crs": "{{GF_PROCESS_CRS}}"
       },
       "position": [
         415.0,
@@ -33,19 +34,57 @@
         "LASWriter"
       ]
     },
+    "MaxInscribedCircle": {
+      "connections": {
+        "max_diameter": [
+          [
+            "OGRWriter",
+            "attributes"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "pointcloud": true,
+        "polygon": true
+      },
+      "marked_outputs": {
+        "max_circle": true,
+        "max_diameter": true,
+        "vd_pts": false
+      },
+      "parameters": {
+        "polygon_densify": 0.5
+      },
+      "position": [
+        92.0,
+        178.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "MaxInscribedCircle"
+      ]
+    },
     "OGRWriter": {
       "marked_inputs": {
         "attributes": true,
         "geometries": true
       },
       "parameters": {
+        "CRS": "{{GF_PROCESS_CRS}}",
         "create_directories": true,
-        "epsg": 7415,
-        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{identificatie}}/crop/footprint.gpkg",
+        "do_transactions": false,
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{polygon_tile_ids}}/objects/{{BID}}/crop/footprint.gpkg",
         "gdaldriver": "GPKG",
         "layername": "geom",
-        "output_attribute_names": {},
-        "overwrite": true,
+        "only_output_mapped_attrs": false,
+        "output_attribute_names": {
+          "MaxInscribedCircle.max_diameter": "r_nodata",
+          "ProxyNode.BID": "BID",
+          "ProxyNode.poly_densities": "pt_density"
+        },
+        "overwrite_file": true,
+        "overwrite_layer": false,
+        "require_attributes": true,
         "transaction_batch_size_": 1000
       },
       "position": [
@@ -70,11 +109,43 @@
         "value": false
       },
       "parameters": {
-        "value": "INPUT_FOOTPRINT={{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{identificatie}}/crop/footprint.gpkg\nINPUT_POINTCLOUD={{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{TILE_ID}}/{{identificatie}}/crop/points.las\nBID={{identificatie}}\nGROUND_ELEVATION={{ground_elevations}}\nTILE_ID={{TILE_ID}}\nDATASET_TITLE={{DATASET_TITLE}}\nOUTPUT_DIR={{OUTPUT_DIR}}"
+        "value": "INPUT_FOOTPRINT=\"{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{polygon_tile_ids}}/objects/{{BID}}/crop/footprint.gpkg\"\nINPUT_POINTCLOUD=\"{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{polygon_tile_ids}}/objects/{{BID}}/crop/points.las\"\nBID=\"{{BID}}\"\nGROUND_ELEVATION={{ground_elevations}}\nTILE_ID=\"{{polygon_tile_ids}}\"\nDATASET_TITLE=\"{{DATASET_TITLE}}\"\nOUTPUT_DIR=\"{{OUTPUT_DIR}}\"\n\nGF_PROCESS_CRS=\"{{GF_PROCESS_CRS}}\"\nOUTPUT_CRS=\"{{OUTPUT_CRS}}\"\n\nGF_PROCESS_OFFSET_OVERRIDE=true\nGF_PROCESS_OFFSET_X={{GF_PROCESS_OFFSET_X}}\nGF_PROCESS_OFFSET_Y={{GF_PROCESS_OFFSET_Y}}\nGF_PROCESS_OFFSET_Z={{GF_PROCESS_OFFSET_Z}}\n\nU_SOURCE=\"{{U_SOURCE}}\"\nU_SURVEY_DATE=\"{{U_SURVEY_DATE}}\"\n\nline_detect__epsilon={{line_detect__epsilon}}\nlod13__step_height={{lod13__step_height}}\noptimisation_data_term={{optimisation_data_term}}\nplane_detect__k={{plane_detect__k}}\nplane_detect__epsilon={{plane_detect__epsilon}}\nplane_detect__min_points={{plane_detect__min_points}}\nplane_detect__normal_angle={{plane_detect__normal_angle}}\nthres_alpha={{thres_alpha}}\nthres_reg_line_dist={{thres_reg_line_dist}}\nthres_reg_line_ext={{thres_reg_line_ext}}\nclip_ground={{clip_ground}}\nlod1_extrude_to_max={{lod1_extrude_to_max}}"
       },
       "position": [
         254.0,
         288.0
+      ],
+      "type": [
+        "Core",
+        "Text"
+      ]
+    },
+    "ogr_vector_path": {
+      "marked_outputs": {
+        "value": true
+      },
+      "parameters": {
+        "value": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{polygon_tile_ids}}/objects/{{BID}}/reconstruct/{{BID}}.gpkg"
+      },
+      "position": [
+        427.0,
+        401.0
+      ],
+      "type": [
+        "Core",
+        "Text"
+      ]
+    },
+    "rec_jsonl_path": {
+      "marked_outputs": {
+        "value": true
+      },
+      "parameters": {
+        "value": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{polygon_tile_ids}}/objects/{{BID}}/reconstruct/{{BID}}"
+      },
+      "position": [
+        431.0,
+        354.0
       ],
       "type": [
         "Core",

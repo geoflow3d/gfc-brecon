@@ -1,5 +1,10 @@
 {
   "globals": {
+    "BID_ATTRIBUTE": [
+      "building object identifier. This is should be an attribute in the input footprint file. The default \"OGR_FID\" works in case you do not have an identifier attribute available.",
+      "str",
+      "OGR_FID"
+    ],
     "CJ_GEOGRAPHIC_LOCATION": [
       "",
       "str",
@@ -8,47 +13,382 @@
     "DATASET_TITLE": [
       "",
       "str",
-      "wippolder"
+      "CollegeStationT"
+    ],
+    "GF_PROCESS_CRS": [
+      "",
+      "str",
+      "EPSG:6343"
+    ],
+    "GF_PROCESS_OFFSET_X": [
+      "offset in X coordinate",
+      "float",
+      297062.375
+    ],
+    "GF_PROCESS_OFFSET_Y": [
+      "offset in Y coordinate",
+      "float",
+      4632788.0
+    ],
+    "GF_PROCESS_OFFSET_Z": [
+      "offset in Z coordinate",
+      "float",
+      0.0
     ],
     "INPUT_FOOTPRINT_SOURCE": [
       "",
       "str",
-      "../test-data/wippolder.gpkg"
+      "/mnt/Data/LocalData/Fugro/Fugro_test_zachery/fugro_testdata/CollegeStation/footprints.gpkg"
+    ],
+    "INPUT_LAS_EPSG": [
+      "Override EPSG code of INPUT_LAS_FILES",
+      "str",
+      ""
     ],
     "INPUT_LAS_FILES": [
       "",
       "str",
-      "../test-data/wippolder.las"
+      "/mnt/Data/LocalData/Fugro/Fugro_test_zachery/fugro_testdata/CollegeStation/LAZ"
+    ],
+    "OUTPUT_CRS": [
+      "",
+      "str",
+      "EPSG:6343"
+    ],
+    "OUTPUT_DB_CONNECTION": [
+      "",
+      "str",
+      "PG:dbname=databasename port=5432 host=localhost user=username password=password1234"
     ],
     "OUTPUT_DIR": [
       "",
       "str",
-      "output"
+      "/output"
     ],
     "OUTPUT_FORMAT": [
       "",
       "str",
       "GPKG"
     ],
+    "OUTPUT_LAYERNAME_LOD11_2D": [
+      "",
+      "str",
+      "LoD11_2D"
+    ],
+    "OUTPUT_LAYERNAME_LOD11_3D": [
+      "",
+      "str",
+      "LoD11_3D"
+    ],
+    "OUTPUT_LAYERNAME_LOD12_2D": [
+      "",
+      "str",
+      "LoD12_2D"
+    ],
+    "OUTPUT_LAYERNAME_LOD12_3D": [
+      "",
+      "str",
+      "LoD12_3D"
+    ],
+    "OUTPUT_LAYERNAME_LOD13_2D": [
+      "",
+      "str",
+      "LoD13_2D"
+    ],
+    "OUTPUT_LAYERNAME_LOD13_3D": [
+      "",
+      "str",
+      "LoD13_3D"
+    ],
     "TILE_ID": [
       "",
       "str",
-      "1"
+      "0"
+    ],
+    "TILE_SIZE": [
+      "",
+      "float",
+      10000.0
+    ],
+    "U_SOURCE": [
+      "",
+      "str",
+      "3DEP"
+    ],
+    "U_SURVEY_DATE": [
+      "",
+      "str",
+      "1-1-1970"
+    ],
+    "clip_ground": [
+      "",
+      "bool",
+      false
+    ],
+    "line_detect__epsilon": [
+      "",
+      "float",
+      1.0
+    ],
+    "lod13__step_height": [
+      "",
+      "float",
+      3.0
+    ],
+    "lod1_extrude_to_max": [
+      "",
+      "bool",
+      true
+    ],
+    "normal_estimate__k": [
+      "",
+      "int",
+      8
+    ],
+    "optimisation_data_term": [
+      "",
+      "float",
+      8.0
+    ],
+    "overwrite_output": [
+      "",
+      "bool",
+      false
+    ],
+    "plane_detect__epsilon": [
+      "",
+      "float",
+      0.30000001192092896
+    ],
+    "plane_detect__k": [
+      "",
+      "int",
+      15
+    ],
+    "plane_detect__min_points": [
+      "",
+      "int",
+      15
+    ],
+    "plane_detect__normal_angle": [
+      "",
+      "float",
+      0.75
+    ],
+    "skip_attribute_name": [
+      "",
+      "str",
+      "kas_warenhuis"
+    ],
+    "thres_alpha": [
+      "",
+      "float",
+      0.25
+    ],
+    "thres_reg_line_dist": [
+      "",
+      "float",
+      0.800000011920929
+    ],
+    "thres_reg_line_ext": [
+      "",
+      "float",
+      3.0
     ]
   },
   "nodes": {
+    "AttributeRenamer": {
+      "connections": {
+        "attributes": [
+          [
+            "NestedWriter",
+            "NestedWriter.globals"
+          ],
+          [
+            "OGRWriter-maxcircle",
+            "attributes"
+          ],
+          [
+            "NestedWriter",
+            "OGRWriter.attributes"
+          ],
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "attributes": false
+      },
+      "marked_outputs": {
+        "attributes": false
+      },
+      "parameters": {
+        "Attribute re-naming": {
+          "{{BID_ATTRIBUTE}}": "BID"
+        },
+        "only_output_mapped_attrs": true
+      },
+      "position": [
+        349.0,
+        -70.0
+      ],
+      "type": [
+        "Core",
+        "AttributeRenamer"
+      ]
+    },
+    "CityJSONFeatureMetadataWriter": {
+      "marked_inputs": {
+        "footprints": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/metadata.city.json",
+        "prettyPrint": false,
+        "scale_x": 0.0010000000474974513,
+        "scale_y": 0.0010000000474974513,
+        "scale_z": 0.0010000000474974513,
+        "translate_x": "{{GF_PROCESS_OFFSET_X}}",
+        "translate_y": "{{GF_PROCESS_OFFSET_Y}}",
+        "translate_z": "{{GF_PROCESS_OFFSET_Z}}"
+      },
+      "position": [
+        687.0,
+        -250.0
+      ],
+      "type": [
+        "CoreIO",
+        "CityJSONFeatureMetadataWriter"
+      ]
+    },
+    "GridTiler": {
+      "connections": {
+        "polygon_tile_ids": [
+          [
+            "NestedWriter",
+            "NestedWriter.globals"
+          ],
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
+          ]
+        ],
+        "tile_geom_cnts": [
+          [
+            "OGRWriter-Tiles",
+            "attributes"
+          ]
+        ],
+        "tile_geom_ids": [
+          [
+            "NestedTileConfigWriter",
+            "NestedTileConfigWriter.globals"
+          ],
+          [
+            "OGRWriter-Tiles",
+            "attributes"
+          ]
+        ],
+        "tile_geoms": [
+          [
+            "OGRWriter-Tiles",
+            "geometries"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "polygons": false
+      },
+      "marked_outputs": {
+        "polygon_tile_ids": false,
+        "tile_geom_cnts": false,
+        "tile_geom_ids": false,
+        "tile_geoms": false
+      },
+      "parameters": {
+        "cellsize": "{{TILE_SIZE}}"
+      },
+      "position": [
+        685.0,
+        -135.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "GridTiler"
+      ]
+    },
     "LASInPolygons": {
       "connections": {
         "ground_elevations": [
           [
             "NestedWriter",
             "NestedWriter.globals"
+          ],
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
           ]
         ],
         "point_clouds": [
           [
             "NestedWriter",
             "LASWriter.point_clouds"
+          ],
+          [
+            "NestedWriter",
+            "MaxInscribedCircle.pointcloud"
+          ]
+        ],
+        "poly_areas": [
+          [
+            "NestedWriter",
+            "OGRWriter.attributes"
+          ],
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
+          ]
+        ],
+        "poly_densities": [
+          [
+            "NestedWriter",
+            "OGRWriter.attributes"
+          ],
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
+          ]
+        ],
+        "poly_pt_counts_bld": [
+          [
+            "NestedWriter",
+            "OGRWriter.attributes"
+          ],
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
+          ]
+        ],
+        "poly_pt_counts_grd": [
+          [
+            "NestedWriter",
+            "OGRWriter.attributes"
+          ],
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
+          ]
+        ],
+        "poly_ptcoverage_class": [
+          [
+            "NestedWriter",
+            "OGRWriter.attributes"
+          ],
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
           ]
         ]
       },
@@ -75,7 +415,7 @@
         "ground_class": 2,
         "ground_percentile": 0.05000000074505806,
         "las_filepaths": "{{INPUT_LAS_FILES}}",
-        "only_first_return": true
+        "wkt": "{{INPUT_LAS_EPSG}}"
       },
       "position": [
         395.04998779296875,
@@ -86,22 +426,85 @@
         "LASInPolygons"
       ]
     },
+    "NestedTileConfigWriter": {
+      "marked_inputs": {
+        "NestedTileConfigWriter.globals": false,
+        "NestedTileConfigWriter.wait": false
+      },
+      "marked_outputs": {
+        "NestedTileConfigWriter.timings": false
+      },
+      "parameters": {
+        "filepath": "crop_tile_config_writer.json",
+        "push_any_for_empty_sfterminal": true,
+        "require_input_globals": true,
+        "require_input_wait": false
+      },
+      "position": [
+        968.0,
+        252.0
+      ],
+      "type": [
+        "Core",
+        "NestedFlowchart"
+      ]
+    },
     "NestedWriter": {
+      "connections": {
+        "MaxInscribedCircle.max_circle": [
+          [
+            "OGRWriter-maxcircle",
+            "geometries"
+          ]
+        ],
+        "MaxInscribedCircle.max_diameter": [
+          [
+            "OGRWriter-maxcircle",
+            "attributes"
+          ],
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
+          ]
+        ],
+        "NestedWriter.timings": [
+          [
+            "OGRWriter-maxcircle",
+            "attributes"
+          ]
+        ],
+        "rec_jsonl_path.value": [
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
+          ]
+        ]
+      },
       "marked_inputs": {
         "LASWriter.point_clouds": false,
+        "MaxInscribedCircle.pointcloud": false,
+        "MaxInscribedCircle.polygon": false,
         "NestedWriter.globals": false,
+        "NestedWriter.wait": false,
         "OGRWriter.attributes": false,
         "OGRWriter.geometries": false
       },
       "marked_outputs": {
-        "NestedWriter.timings": false
+        "MaxInscribedCircle.max_circle": false,
+        "MaxInscribedCircle.max_diameter": false,
+        "NestedWriter.timings": false,
+        "ogr_vector_path.value": false,
+        "rec_jsonl_path.value": false
       },
       "parameters": {
-        "filepath": "crop_.json"
+        "filepath": "crop_.json",
+        "push_any_for_empty_sfterminal": true,
+        "require_input_globals": false,
+        "require_input_wait": false
       },
       "position": [
-        815.0,
-        129.0
+        807.0,
+        92.0
       ],
       "type": [
         "Core",
@@ -112,15 +515,31 @@
       "connections": {
         "attributes": [
           [
+            "AttributeRenamer",
+            "attributes"
+          ],
+          [
             "NestedWriter",
             "NestedWriter.globals"
           ],
           [
             "NestedWriter",
             "OGRWriter.attributes"
+          ],
+          [
+            "OGRWriter-FootprintIndex",
+            "attributes"
           ]
         ],
         "linear_rings": [
+          [
+            "GridTiler",
+            "polygons"
+          ],
+          [
+            "CityJSONFeatureMetadataWriter",
+            "footprints"
+          ],
           [
             "PolygonSimplifyGEOS",
             "polygons"
@@ -135,10 +554,12 @@
         "linear_rings": false
       },
       "parameters": {
+        "attribute_filter": "",
         "base_elevation": 0.0,
-        "feature_select": 0,
         "filepath": "{{INPUT_FOOTPRINT_SOURCE}}",
-        "layer_id": 0
+        "layer_id": 0,
+        "layer_name": "",
+        "output_fid": true
       },
       "position": [
         420.0,
@@ -147,6 +568,102 @@
       "type": [
         "io-gdal",
         "OGRLoader"
+      ]
+    },
+    "OGRWriter-FootprintIndex": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "create_directories": true,
+        "do_transactions": true,
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/index.gpkg",
+        "gdaldriver": "GPKG",
+        "layername": "footprints",
+        "only_output_mapped_attrs": false,
+        "output_attribute_names": {
+          "GridTiler.polygon_tile_ids": "tile_id",
+          "LASInPolygons.ground_elevations": "ground_elevation",
+          "LASInPolygons.poly_areas": "area",
+          "LASInPolygons.poly_densities": "point_density",
+          "LASInPolygons.poly_pt_counts_bld": "pt_count_building",
+          "LASInPolygons.poly_pt_counts_grd": "pt_count_ground",
+          "LASInPolygons.poly_ptcoverage_class": "pt_coverage_classe",
+          "NestedWriter.rec_jsonl_path.value": "jsonl_path",
+          "OGRLoader.BuildingFID": "BID"
+        },
+        "overwrite_file": false,
+        "overwrite_layer": true,
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [
+        1283.0,
+        -86.0
+      ],
+      "type": [
+        "io-gdal",
+        "OGRWriter"
+      ]
+    },
+    "OGRWriter-Tiles": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "create_directories": true,
+        "do_transactions": true,
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/index.gpkg",
+        "gdaldriver": "GPKG",
+        "layername": "tiles",
+        "only_output_mapped_attrs": false,
+        "output_attribute_names": {
+          "GridTiler.tile_geom_ids": "tile_id"
+        },
+        "overwrite_file": false,
+        "overwrite_layer": true,
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [
+        1283.0,
+        -143.0
+      ],
+      "type": [
+        "io-gdal",
+        "OGRWriter"
+      ]
+    },
+    "OGRWriter-maxcircle": {
+      "marked_inputs": {
+        "attributes": false,
+        "geometries": false
+      },
+      "parameters": {
+        "CRS": "{{OUTPUT_CRS}}",
+        "create_directories": true,
+        "do_transactions": false,
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/index.gpkg",
+        "gdaldriver": "GPKG",
+        "layername": "maxcircle",
+        "only_output_mapped_attrs": false,
+        "output_attribute_names": {},
+        "overwrite_file": false,
+        "overwrite_layer": true,
+        "require_attributes": true,
+        "transaction_batch_size_": 1000
+      },
+      "position": [
+        1377.0,
+        -13.0
+      ],
+      "type": [
+        "io-gdal",
+        "OGRWriter"
       ]
     },
     "PolygonBufferGEOS": {
@@ -188,8 +705,16 @@
             "polygons"
           ],
           [
+            "OGRWriter-FootprintIndex",
+            "geometries"
+          ],
+          [
             "NestedWriter",
             "OGRWriter.geometries"
+          ],
+          [
+            "NestedWriter",
+            "MaxInscribedCircle.polygon"
           ]
         ]
       },
@@ -200,6 +725,8 @@
         "simplified_polygons": false
       },
       "parameters": {
+        "orient_after_simplify": true,
+        "output_failures": true,
         "tolerance": 0.009999999776482582
       },
       "position": [

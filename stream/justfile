@@ -1,0 +1,11 @@
+crop CONFIG:
+  geof crop.json --verbose --config {{CONFIG}}
+
+reconstruct NAME:
+  find -L /output -path "/output/{{NAME}}/*/objects/*/config.toml" | parallel geof reconstruct.json --config {1}
+
+tile NAME:
+  find -L /output -path "/output/{{NAME}}/*/tile_config.toml" | parallel geof tiler.json --config {1}
+
+inspect NAME BID:
+  geoflow visual_reconstruct.json --verbose --config /output/{{NAME}}/0/objects/{{BID}}/config.toml

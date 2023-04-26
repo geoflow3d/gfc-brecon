@@ -1,0 +1,45 @@
+{
+  "globals": {},
+  "nodes": {
+    "TileConfig": {
+      "connections": {
+        "value": [
+          [
+            "TileConfigWriter",
+            "value"
+          ]
+        ]
+      },
+      "marked_outputs": {
+        "value": false
+      },
+      "parameters": {
+        "value": "TILE_ID=\"{{tile_geom_ids}}\"\nGF_PROCESS_CRS=\"{{GF_PROCESS_CRS}}\"\nOUTPUT_CRS=\"{{OUTPUT_CRS}}\"\nDATASET_TITLE=\"{{DATASET_TITLE}}\"\nTILE_CJ_OUTPUT=\"{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{DATASET_TITLE}}_{{tile_geom_ids}}\"\nTILE_INDEX_PATH=\"{{OUTPUT_DIR}}/{{DATASET_TITLE}}/index.gpkg\"\nJSONL_METADATA_PATH=\"{{OUTPUT_DIR}}/{{DATASET_TITLE}}/metadata.city.json\""
+      },
+      "position": [
+        428.0,
+        285.0
+      ],
+      "type": [
+        "Core",
+        "Text"
+      ]
+    },
+    "TileConfigWriter": {
+      "marked_inputs": {
+        "value": false
+      },
+      "parameters": {
+        "filepath": "{{OUTPUT_DIR}}/{{DATASET_TITLE}}/{{tile_geom_ids}}/tile_config.toml"
+      },
+      "position": [
+        597.0,
+        284.0
+      ],
+      "type": [
+        "Core",
+        "TextWriter"
+      ]
+    }
+  }
+}
