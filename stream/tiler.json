@@ -108,11 +108,11 @@
       "connections": {
         "attributes": [
           [
-            "OGRWriter-2D-LoD13",
+            "OGRWriter-3D-LoD13",
             "attributes"
           ],
           [
-            "OGRWriter-3D-LoD13",
+            "OGRWriter-2D-LoD13",
             "attributes"
           ]
         ],
@@ -172,10 +172,6 @@
           [
             "OGRWriter-3D-LoD22",
             "geometries"
-          ],
-          [
-            "PolygonTriangulator-LoD22",
-            "polygons"
           ]
         ],
         "roofparts": [

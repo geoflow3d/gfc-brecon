@@ -9,9 +9,9 @@ BID_ATTRIBUTE="identificatie"
 # size of the output tiles in meters. The input is cut into square tiles of TILE_SIZE x TILE_SIZE, mainly to prevent the output files from becoming too large to visualise.
 TILE_SIZE=10000.0
 # path to the input footprint source. Most vector formats are accepts, including GPKG, shapefile. Must have a valid CRS set.
-INPUT_FOOTPRINT_SOURCE="test-data/wippolder.gpkg"
+INPUT_FOOTPRINT_SOURCE="../test-data/wippolder.gpkg"
 # path to input point clouds in LAS/LAZ format. Either a space separated string with las files, or a folder containing LAS files (all .las/.laz filed in the folder are read). Must have a valid CRS set.
-INPUT_LAS_FILES="test-data/wippolder.las"
+INPUT_LAS_FILES="../test-data/wippolder.las"
 # Override EPSG code of INPUT_LAS_FILES
 INPUT_LAS_EPSG="EPSG:7415"
 

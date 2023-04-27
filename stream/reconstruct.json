@@ -3,7 +3,7 @@
     "BID": [
       "Building identifier",
       "str",
-      "8469"
+      "503100000000296"
     ],
     "CITYJSON_SCALE_X": [
       "",
@@ -23,12 +23,12 @@
     "DATASET_TITLE": [
       "",
       "str",
-      "CollegeStationT"
+      "wippolder"
     ],
     "GF_PROCESS_CRS": [
       "",
       "str",
-      "EPSG:6343"
+      "EPSG:7415"
     ],
     "GF_PROCESS_OFFSET_OVERRIDE": [
       "",
@@ -38,12 +38,12 @@
     "GF_PROCESS_OFFSET_X": [
       "offset in X coordinate",
       "float",
-      758928.0
+      85373.40625
     ],
     "GF_PROCESS_OFFSET_Y": [
       "offset in Y coordinate",
       "float",
-      3391283.5
+      447090.53125
     ],
     "GF_PROCESS_OFFSET_Z": [
       "offset in Z coordinate",
@@ -53,22 +53,22 @@
     "GROUND_ELEVATION": [
       "",
       "float",
-      88.80000305175781
+      -0.16899999976158142
     ],
     "INPUT_FOOTPRINT": [
       "",
       "str",
-      "/output/CollegeStationT/0/objects/8469/crop/footprint.gpkg"
+      "/output/wippolder/0/objects/503100000000296/crop/footprint.gpkg"
     ],
     "INPUT_POINTCLOUD": [
       "",
       "str",
-      "/output/CollegeStationT/0/objects/8469/crop/points.las"
+      "/output/wippolder/0/objects/503100000000296/crop/points.las"
     ],
     "OUTPUT_CRS": [
       "",
       "str",
-      "EPSG:6343"
+      "EPSG:7415"
     ],
     "OUTPUT_DIR": [
       "",
@@ -93,22 +93,22 @@
     "U_SOURCE": [
       "",
       "str",
-      "3DEP"
+      "AHN3"
     ],
     "U_SURVEY_DATE": [
       "",
       "str",
-      "1-1-1970"
+      "2014"
     ],
     "clip_ground": [
       "",
       "bool",
-      false
+      true
     ],
     "line_detect__epsilon": [
       "",
       "float",
-      1.0
+      0.4000000059604645
     ],
     "lod13__step_height": [
       "",
@@ -118,7 +118,7 @@
     "lod1_extrude_to_max": [
       "",
       "bool",
-      false
+      true
     ],
     "normal_estimate__k": [
       "",
@@ -128,12 +128,12 @@
     "optimisation_data_term": [
       "",
       "float",
-      8.0
+      7.0
     ],
     "plane_detect__epsilon": [
       "",
       "float",
-      0.30000001192092896
+      0.20000000298023224
     ],
     "plane_detect__k": [
       "",
@@ -153,7 +153,7 @@
     "plane_detect_ransac": [
       "",
       "bool",
-      true
+      false
     ],
     "skip_attribute_name": [
       "",
@@ -183,17 +183,17 @@
     "thres_alpha": [
       "",
       "float",
-      0.5
+      0.25
     ],
     "thres_reg_line_dist": [
       "",
       "float",
-      1.0
+      0.5
     ],
     "thres_reg_line_ext": [
       "",
       "float",
-      3.0
+      1.5
     ],
     "thres_tri_snap": [
       "",
@@ -210,13 +210,27 @@
             "edge_points"
           ],
           [
+            "SegmentRasterise",
+            "alpha_rings"
+          ],
+          [
             "SkipReplaceTester",
             "alpha_rings"
+          ]
+        ],
+        "alpha_triangles": [
+          [
+            "SegmentRasterise",
+            "triangles"
           ]
         ],
         "roofplane_ids": [
           [
             "DetectLines",
+            "roofplane_ids"
+          ],
+          [
+            "SegmentRasterise",
             "roofplane_ids"
           ]
         ]
@@ -243,6 +257,43 @@
       "position": [
         1263.1005859375,
         186.20001220703125
+      ],
+      "type": [
+        "building-reconstruction",
+        "AlphaShape"
+      ]
+    },
+    "AlphaShape-ground": {
+      "connections": {
+        "alpha_triangles": [
+          [
+            "SegmentRasterise",
+            "ground_triangles"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "pts_per_roofplane": false,
+        "skip": false
+      },
+      "marked_outputs": {
+        "alpha_edges": false,
+        "alpha_rings": false,
+        "alpha_triangles": false,
+        "boundary_points": false,
+        "edge_points": false,
+        "roofplane_ids": false,
+        "segment_ids": false
+      },
+      "parameters": {
+        "extract_polygons": false,
+        "optimal_alpha": false,
+        "optimal_only_if_needed": true,
+        "thres_alpha": 0.25
+      },
+      "position": [
+        1271.0,
+        520.0
       ],
       "type": [
         "building-reconstruction",
@@ -475,6 +526,10 @@
       "connections": {
         "result": [
           [
+            "AlphaShape-ground",
+            "skip"
+          ],
+          [
             "AlphaShape",
             "skip"
           ],
@@ -535,61 +590,6 @@
         "BuildArrFromLines"
       ]
     },
-    "BuildingRasterise": {
-      "connections": {
-        "heightfield": [
-          [
-            "ArrDissolve-LoD13",
-            "heightfield"
-          ],
-          [
-            "ArrDissolve-LoD22",
-            "heightfield"
-          ],
-          [
-            "ArrDissolveLoD12",
-            "heightfield"
-          ],
-          [
-            "OptimiseArrangmentGrid",
-            "heightfield"
-          ]
-        ]
-      },
-      "marked_inputs": {
-        "footprint": false,
-        "ground_points": false,
-        "h_ground": false,
-        "points": false
-      },
-      "marked_outputs": {
-        "grid_points": false,
-        "heightfield": false,
-        "image": false,
-        "values": false
-      },
-      "parameters": {
-        "angle_thres": 5.0,
-        "area_thres": 0.30000001192092896,
-        "cellsize": 0.5,
-        "do_angle_thres": false,
-        "do_area_thres": false,
-        "do_len_thres": true,
-        "do_normal_angle_thres": false,
-        "len_thres": 0.6499999761581421,
-        "normal_angle_thres": 10.0,
-        "use_ground_pts": "{{clip_ground}}",
-        "use_tin": false
-      },
-      "position": [
-        2020.0,
-        443.0
-      ],
-      "type": [
-        "building-reconstruction",
-        "BuildingRasterise"
-      ]
-    },
     "CityJSONFeatureWriter": {
       "marked_inputs": {
         "attributes": false,
@@ -633,9 +633,9 @@
         "scale_x": "{{CITYJSON_SCALE_X}}",
         "scale_y": "{{CITYJSON_SCALE_Y}}",
         "scale_z": "{{CITYJSON_SCALE_Z}}",
-        "translate_x": 297062.375,
-        "translate_y": 4632788.0,
-        "translate_z": 0.0
+        "translate_x": "{{GF_PROCESS_OFFSET_X}}",
+        "translate_y": "{{GF_PROCESS_OFFSET_Y}}",
+        "translate_z": "{{GF_PROCESS_OFFSET_Z}}"
       },
       "position": [
         4531.0,
@@ -727,6 +727,10 @@
           ],
           [
             "PlaneIntersect",
+            "pts_per_roofplane"
+          ],
+          [
+            "SegmentRasterise",
             "pts_per_roofplane"
           ]
         ],
@@ -824,6 +828,10 @@
     "DetectPlanes-ground": {
       "connections": {
         "pts_per_roofplane": [
+          [
+            "AlphaShape-ground",
+            "pts_per_roofplane"
+          ],
           [
             "OptimiseArrangmentGrid",
             "ground_pts_per_roofplane"
@@ -997,10 +1005,6 @@
             "floor_elevation"
           ],
           [
-            "BuildingRasterise",
-            "h_ground"
-          ],
-          [
             "CityJSONFeatureWriter",
             "attributes"
           ],
@@ -1118,10 +1122,6 @@
         "linear_rings": [
           [
             "BuildArrFromLines",
-            "footprint"
-          ],
-          [
-            "BuildingRasterise",
             "footprint"
           ],
           [
@@ -1547,6 +1547,56 @@
         "RegulariseLines"
       ]
     },
+    "SegmentRasterise": {
+      "connections": {
+        "heightfield": [
+          [
+            "ArrDissolve-LoD13",
+            "heightfield"
+          ],
+          [
+            "ArrDissolve-LoD22",
+            "heightfield"
+          ],
+          [
+            "ArrDissolveLoD12",
+            "heightfield"
+          ],
+          [
+            "OptimiseArrangmentGrid",
+            "heightfield"
+          ]
+        ]
+      },
+      "marked_inputs": {
+        "alpha_rings": false,
+        "ground_triangles": false,
+        "pts_per_roofplane": false,
+        "roofplane_ids": false,
+        "triangles": false
+      },
+      "marked_outputs": {
+        "data_area": false,
+        "grid_points": false,
+        "heightfield": false,
+        "values": false
+      },
+      "parameters": {
+        "cellsize": 0.05000000074505806,
+        "fill_nodata": false,
+        "fill_nodata_window_size": 5,
+        "megapixel_limit": 600,
+        "use_ground": true
+      },
+      "position": [
+        2017.0,
+        465.0
+      ],
+      "type": [
+        "building-reconstruction",
+        "SegmentRasterise"
+      ]
+    },
     "SkipReplaceTester": {
       "connections": {
         "replace": [
@@ -1604,19 +1654,11 @@
       "connections": {
         "A": [
           [
-            "BuildingRasterise",
-            "ground_points"
-          ],
-          [
             "DetectPlanes-ground",
             "points"
           ]
         ],
         "B": [
-          [
-            "BuildingRasterise",
-            "points"
-          ],
           [
             "DetectPlanes",
             "points"
@@ -1733,7 +1775,7 @@
       },
       "position": [
         2866.0,
-        688.0
+        712.0
       ],
       "type": [
         "building-reconstruction",
@@ -1759,7 +1801,7 @@
       },
       "parameters": {
         "log_invalids": false,
-        "tol_planarity_d2p_": 0.009999999776482582,
+        "tol_planarity_d2p_": 9.999999747378752e-05,
         "tol_planarity_normals_": 20.0
       },
       "position": [
@@ -1790,7 +1832,7 @@
       },
       "parameters": {
         "log_invalids": false,
-        "tol_planarity_d2p_": 0.009999999776482582,
+        "tol_planarity_d2p_": 9.999999747378752e-05,
         "tol_planarity_normals_": 20.0
       },
       "position": [
@@ -1821,7 +1863,7 @@
       },
       "parameters": {
         "log_invalids": false,
-        "tol_planarity_d2p_": 0.009999999776482582,
+        "tol_planarity_d2p_": 9.999999747378752e-05,
         "tol_planarity_normals_": 20.0
       },
       "position": [
