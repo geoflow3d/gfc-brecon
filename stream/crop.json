@@ -18,7 +18,7 @@
     "GF_PROCESS_CRS": [
       "",
       "str",
-      "EPSG:6343"
+      "EPSG:7415"
     ],
     "GF_PROCESS_OFFSET_X": [
       "offset in X coordinate",
@@ -38,7 +38,7 @@
     "INPUT_FOOTPRINT_SOURCE": [
       "",
       "str",
-      "/mnt/Data/LocalData/Fugro/Fugro_test_zachery/fugro_testdata/CollegeStation/footprints.gpkg"
+      "../test-data/wippolder.gpkg"
     ],
     "INPUT_LAS_EPSG": [
       "Override EPSG code of INPUT_LAS_FILES",
@@ -48,12 +48,12 @@
     "INPUT_LAS_FILES": [
       "",
       "str",
-      "/mnt/Data/LocalData/Fugro/Fugro_test_zachery/fugro_testdata/CollegeStation/LAZ"
+      "../test-data/wippolder.las"
     ],
     "OUTPUT_CRS": [
       "",
       "str",
-      "EPSG:6343"
+      "EPSG:7415"
     ],
     "OUTPUT_DB_CONNECTION": [
       "",
@@ -113,7 +113,7 @@
     "U_SOURCE": [
       "",
       "str",
-      "3DEP"
+      "AHN3"
     ],
     "U_SURVEY_DATE": [
       "",
