@@ -13,7 +13,7 @@
     "DATASET_TITLE": [
       "",
       "str",
-      "CollegeStationT"
+      "Wippolder"
     ],
     "GF_PROCESS_CRS": [
       "",
@@ -23,12 +23,12 @@
     "GF_PROCESS_OFFSET_X": [
       "offset in X coordinate",
       "float",
-      297062.375
+      2.0
     ],
     "GF_PROCESS_OFFSET_Y": [
       "offset in Y coordinate",
       "float",
-      4632788.0
+      2.0
     ],
     "GF_PROCESS_OFFSET_Z": [
       "offset in Z coordinate",
@@ -43,7 +43,7 @@
     "INPUT_LAS_EPSG": [
       "Override EPSG code of INPUT_LAS_FILES",
       "str",
-      ""
+      "EPSG:7415"
     ],
     "INPUT_LAS_FILES": [
       "",
@@ -551,7 +551,8 @@
         "attributes": false,
         "is_valid": false,
         "line_strings": false,
-        "linear_rings": false
+        "linear_rings": false,
+        "wkt": false
       },
       "parameters": {
         "attribute_filter": "",

@@ -160,11 +160,11 @@
       "connections": {
         "attributes": [
           [
-            "OGRWriter-3D-LoD22",
+            "OGRWriter-2D-LoD22",
             "attributes"
           ],
           [
-            "OGRWriter-2D-LoD22",
+            "OGRWriter-3D-LoD22",
             "attributes"
           ]
         ],
@@ -172,6 +172,10 @@
           [
             "OGRWriter-3D-LoD22",
             "geometries"
+          ],
+          [
+            "PolygonTriangulator-LoD22",
+            "polygons"
           ]
         ],
         "roofparts": [
@@ -362,7 +366,8 @@
         "attributes": false,
         "is_valid": false,
         "line_strings": false,
-        "linear_rings": false
+        "linear_rings": false,
+        "wkt": false
       },
       "parameters": {
         "attribute_filter": "tile_id = {{TILE_ID}}",

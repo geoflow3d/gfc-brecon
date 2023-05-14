@@ -2,7 +2,7 @@ crop CONFIG:
   geof crop.json --verbose --config {{CONFIG}}
 
 reconstruct NAME:
-  find -L /output -path "/output/{{NAME}}/*/objects/*/config.toml" | parallel geof reconstruct.json --config {1}
+  find -L /output -path "/output/{{NAME}}/*/objects/*/config.toml" | parallel geof reconstruct.json --verbose --config {1}
 
 tile NAME:
   find -L /output -path "/output/{{NAME}}/*/tile_config.toml" | parallel geof --verbose tiler.json --config {1}
