@@ -4,6 +4,9 @@ crop CONFIG:
 reconstruct NAME:
   find -L /output -path "/output/{{NAME}}/*/objects/*/config.toml" | parallel geof reconstruct.json --verbose --config {1}
 
+reconstruct-bag NAME:
+  find -L /output -path "/output/{{NAME}}/*/objects/*/config.toml" | parallel geof reconstruct_bag.json --verbose --config {1}
+
 tile NAME:
   find -L /output -path "/output/{{NAME}}/*/tile_config.toml" | parallel geof --verbose tiler.json --config {1}
 
