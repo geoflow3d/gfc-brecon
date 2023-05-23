@@ -20,30 +20,25 @@
       "float",
       0.0010000000474974513
     ],
+    "CITYJSON_TRANSLATE_X": [
+      "",
+      "float",
+      171800.0
+    ],
+    "CITYJSON_TRANSLATE_Y": [
+      "",
+      "float",
+      472700.0
+    ],
+    "CITYJSON_TRANSLATE_Z": [
+      "",
+      "float",
+      0.0
+    ],
     "GF_PROCESS_CRS": [
       "",
       "str",
       "EPSG:7415"
-    ],
-    "GF_PROCESS_OFFSET_OVERRIDE": [
-      "",
-      "bool",
-      true
-    ],
-    "GF_PROCESS_OFFSET_X": [
-      "offset in X coordinate",
-      "float",
-      95905.4765625
-    ],
-    "GF_PROCESS_OFFSET_Y": [
-      "offset in Y coordinate",
-      "float",
-      462699.21875
-    ],
-    "GF_PROCESS_OFFSET_Z": [
-      "offset in Z coordinate",
-      "float",
-      0.0
     ],
     "GROUND_ELEVATION": [
       "",
@@ -614,9 +609,9 @@
         "scale_x": "{{CITYJSON_SCALE_X}}",
         "scale_y": "{{CITYJSON_SCALE_Y}}",
         "scale_z": "{{CITYJSON_SCALE_Z}}",
-        "translate_x": "{{GF_PROCESS_OFFSET_X}}",
-        "translate_y": "{{GF_PROCESS_OFFSET_Y}}",
-        "translate_z": "{{GF_PROCESS_OFFSET_Z}}"
+        "translate_x": "{{CITYJSON_TRANSLATE_X}}",
+        "translate_y": "{{CITYJSON_TRANSLATE_Y}}",
+        "translate_z": "{{CITYJSON_TRANSLATE_Z}}"
       },
       "position": [
         4530.0,
@@ -999,11 +994,11 @@
         "value": false
       },
       "parameters": {
-        "value": "g.GROUND_ELEVATION - g.GF_PROCESS_OFFSET_Z"
+        "value": "g.GROUND_ELEVATION"
       },
       "position": [
-        2427.0,
-        -42.0
+        2440.0,
+        -37.0
       ],
       "type": [
         "Core",
@@ -1597,11 +1592,11 @@
         ],
         "skip": [
           [
-            "FacesSelector-LoD12",
+            "FacesSelector-LoD13",
             "skip"
           ],
           [
-            "FacesSelector-LoD13",
+            "FacesSelector-LoD12",
             "skip"
           ],
           [
