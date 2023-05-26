@@ -40,6 +40,26 @@
       "str",
       "EPSG:7415"
     ],
+    "GF_PROCESS_OFFSET_OVERRIDE": [
+      "",
+      "bool",
+      true
+    ],
+    "GF_PROCESS_OFFSET_X": [
+      "offset in X coordinate",
+      "float",
+      0.0
+    ],
+    "GF_PROCESS_OFFSET_Y": [
+      "offset in Y coordinate",
+      "float",
+      0.0
+    ],
+    "GF_PROCESS_OFFSET_Z": [
+      "offset in Z coordinate",
+      "float",
+      0.0
+    ],
     "GROUND_ELEVATION": [
       "",
       "float",
@@ -969,6 +989,30 @@
       "connections": {
         "value": [
           [
+            "CityJSONFeatureWriter",
+            "attributes"
+          ]
+        ]
+      },
+      "marked_outputs": {
+        "value": false
+      },
+      "parameters": {
+        "value": "g.GROUND_ELEVATION + g.GF_PROCESS_OFFSET_Z"
+      },
+      "position": [
+        4120.0,
+        301.0
+      ],
+      "type": [
+        "Core",
+        "FloatExpr"
+      ]
+    },
+    "Ground_elevation_woffset": {
+      "connections": {
+        "value": [
+          [
             "ArrExtrLoD12",
             "floor_elevation"
           ],
@@ -979,10 +1023,6 @@
           [
             "ArrExtruder-LoD22",
             "floor_elevation"
-          ],
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
           ],
           [
             "LOD1Extruder-LoD11",
@@ -1592,11 +1632,11 @@
         ],
         "skip": [
           [
-            "FacesSelector-LoD13",
+            "FacesSelector-LoD12",
             "skip"
           ],
           [
-            "FacesSelector-LoD12",
+            "FacesSelector-LoD13",
             "skip"
           ],
           [
