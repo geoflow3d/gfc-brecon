@@ -1527,12 +1527,6 @@
             "BuildArrFromLines",
             "lines"
           ]
-        ],
-        "n_angle_clusters": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
         ]
       },
       "marked_inputs": {
@@ -1556,8 +1550,8 @@
         "merge_intersection_lines": false
       },
       "position": [
-        1995.46533203125,
-        244.89376831054688
+        2004.46533203125,
+        253.89376831054688
       ],
       "type": [
         "building-reconstruction",
