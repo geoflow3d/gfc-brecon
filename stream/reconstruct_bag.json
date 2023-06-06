@@ -3,7 +3,7 @@
     "BID": [
       "Building identifier",
       "str",
-      "NL.IMBAG.Pand.0547100000327890"
+      "NL.IMBAG.Pand.1742100000013892"
     ],
     "CITYJSON_SCALE_X": [
       "",
@@ -48,12 +48,12 @@
     "GF_PROCESS_OFFSET_X": [
       "offset in X coordinate",
       "float",
-      0.0
+      232494.8125
     ],
     "GF_PROCESS_OFFSET_Y": [
       "offset in Y coordinate",
       "float",
-      0.0
+      480876.65625
     ],
     "GF_PROCESS_OFFSET_Z": [
       "offset in Z coordinate",
@@ -63,17 +63,17 @@
     "GROUND_ELEVATION": [
       "",
       "float",
-      0.1589999943971634
+      9.545999526977539
     ],
     "INPUT_FOOTPRINT": [
       "",
       "str",
-      "/output/test_all//0/objects/NL.IMBAG.Pand.0547100000327890/crop/NL.IMBAG.Pand.0547100000327890.gpkg"
+      "/dev/shm/RijssenHolten/10_874_696/objects/NL.IMBAG.Pand.1742100000013892/crop/NL.IMBAG.Pand.1742100000013892.gpkg"
     ],
     "INPUT_POINTCLOUD": [
       "",
       "str",
-      "/output/test_all//0/objects/NL.IMBAG.Pand.0547100000327890/crop/NL.IMBAG.Pand.0547100000327890_AHN4.las"
+      "/dev/shm/RijssenHolten/10_874_696/objects/NL.IMBAG.Pand.1742100000013892/crop/NL.IMBAG.Pand.1742100000013892_AHN4.las"
     ],
     "OUTPUT_CRS": [
       "",
@@ -83,7 +83,7 @@
     "OUTPUT_JSONL": [
       "",
       "str",
-      ""
+      "/dev/shm/RijssenHolten/10_874_696/objects/NL.IMBAG.Pand.1742100000013892/reconstruct/NL.IMBAG.Pand.1742100000013892.city.jsonl"
     ],
     "U_SOURCE": [
       "",
@@ -521,11 +521,11 @@
       "connections": {
         "result": [
           [
-            "AlphaShape-ground",
+            "AlphaShape",
             "skip"
           ],
           [
-            "AlphaShape",
+            "AlphaShape-ground",
             "skip"
           ],
           [
@@ -598,17 +598,15 @@
         "CRS": "{{OUTPUT_CRS}}",
         "filepath": "{{OUTPUT_JSONL}}",
         "identifier_attribute": "identificatie",
-        "only_output_renamed": true,
+        "only_output_renamed": false,
         "output_attribute_names": {
           "AttributeCalc.floors": "floors",
           "AttributeCalc.height": "height",
-          "CalcOptimalLOD.optimal_lod": "optimal_lod",
-          "DetectPlanes.roof_elevation_max": "max_z",
-          "DetectPlanes.roof_elevation_min": "min_roof_z",
-          "DetectPlanes.roof_type": "roof_type",
+          "DetectPlanes.roof_elevation_max": "h_dak_max",
+          "DetectPlanes.roof_elevation_min": "h_dak_min",
+          "DetectPlanes.roof_type": "dak_type",
           "FeatureType.value": "feature_type",
           "Ground_elevation.value": "min_z",
-          "OGRLoader.BID": "BID",
           "OGRLoader.area": "area_m",
           "OGRLoader.identificatie": "identificatie",
           "OGRLoader.pt_density": "pt_density",
@@ -616,14 +614,15 @@
           "PC2MeshQuality-LoD12.mesh_error_f": "rmse_lod12",
           "PC2MeshQuality-LoD13.mesh_error_f": "rmse_lod13",
           "PC2MeshQuality-LoD22.mesh_error_f": "rmse_lod22",
+          "PolygonTriangulator-LoD12.volumes": "volume_lod12",
+          "PolygonTriangulator-LoD13.volumes": "volume_lod13",
+          "PolygonTriangulator-LoD22.volumes": "volume_lod22",
+          "SkipReplaceTester.skip": "reconstruction_skipped",
           "Validator-LoD12.errors": "val3dity_codes_lod12",
           "Validator-LoD13.errors": "val3dity_codes_lod13",
           "Validator-LoD22.errors": "val3dity_codes_lod22",
-          "lod.value": "lod",
-          "method.value": "method",
-          "source.value": "source",
-          "survey_date.value": "survey_date",
-          "textures.value": "textures"
+          "method.value": "reconstructie_methode",
+          "source.value": "pw_bron"
         },
         "prettyPrint": false,
         "scale_x": "{{CITYJSON_SCALE_X}}",
@@ -634,8 +633,8 @@
         "translate_z": "{{CITYJSON_TRANSLATE_Z}}"
       },
       "position": [
-        4530.0,
-        339.0
+        4683.0,
+        443.0
       ],
       "type": [
         "CoreIO",
@@ -1394,15 +1393,16 @@
         "multi_triangle_collections": true,
         "normals": false,
         "ring_ids": false,
-        "triangles": false
+        "triangles": false,
+        "volumes": false
       },
       "parameters": {
         "dupe_threshold_exp": 4,
         "output_all_triangles": false
       },
       "position": [
-        2782.0,
-        -473.864013671875
+        2759.0,
+        -497.864013671875
       ],
       "type": [
         "building-reconstruction",
@@ -1422,6 +1422,12 @@
             "PC2MeshQuality-LoD12",
             "face_ids"
           ]
+        ],
+        "volumes": [
+          [
+            "CityJSONFeatureWriter",
+            "attributes"
+          ]
         ]
       },
       "marked_inputs": {
@@ -1431,7 +1437,8 @@
         "multi_triangle_collections": true,
         "normals": false,
         "ring_ids": false,
-        "triangles": false
+        "triangles": false,
+        "volumes": false
       },
       "parameters": {
         "dupe_threshold_exp": 4,
@@ -1459,6 +1466,12 @@
             "PC2MeshQuality-LoD13",
             "face_ids"
           ]
+        ],
+        "volumes": [
+          [
+            "CityJSONFeatureWriter",
+            "attributes"
+          ]
         ]
       },
       "marked_inputs": {
@@ -1468,7 +1481,8 @@
         "multi_triangle_collections": true,
         "normals": false,
         "ring_ids": false,
-        "triangles": false
+        "triangles": false,
+        "volumes": false
       },
       "parameters": {
         "dupe_threshold_exp": 4,
@@ -1496,6 +1510,12 @@
             "PC2MeshQuality-LoD22",
             "face_ids"
           ]
+        ],
+        "volumes": [
+          [
+            "CityJSONFeatureWriter",
+            "attributes"
+          ]
         ]
       },
       "marked_inputs": {
@@ -1505,7 +1525,8 @@
         "multi_triangle_collections": true,
         "normals": false,
         "ring_ids": false,
-        "triangles": false
+        "triangles": false,
+        "volumes": false
       },
       "parameters": {
         "dupe_threshold_exp": 4,
@@ -1625,6 +1646,10 @@
           ]
         ],
         "skip": [
+          [
+            "CityJSONFeatureWriter",
+            "attributes"
+          ],
           [
             "FacesSelector-LoD12",
             "skip"
