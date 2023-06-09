@@ -3,22 +3,22 @@
     "BID": [
       "Building identifier",
       "str",
-      "NL.IMBAG.Pand.1742100000013892"
+      "NL.IMBAG.Pand.0599100000702017"
     ],
     "CITYJSON_SCALE_X": [
       "",
       "float",
-      9.999999747378752e-05
+      0.0010000000474974513
     ],
     "CITYJSON_SCALE_Y": [
       "",
       "float",
-      9.999999747378752e-05
+      0.0010000000474974513
     ],
     "CITYJSON_SCALE_Z": [
       "",
       "float",
-      9.999999747378752e-05
+      0.0010000000474974513
     ],
     "CITYJSON_TRANSLATE_X": [
       "",
@@ -48,12 +48,12 @@
     "GF_PROCESS_OFFSET_X": [
       "offset in X coordinate",
       "float",
-      232494.8125
+      92721.7265625
     ],
     "GF_PROCESS_OFFSET_Y": [
       "offset in Y coordinate",
       "float",
-      480876.65625
+      437138.8125
     ],
     "GF_PROCESS_OFFSET_Z": [
       "offset in Z coordinate",
@@ -63,17 +63,17 @@
     "GROUND_ELEVATION": [
       "",
       "float",
-      9.545999526977539
+      -4.083000183105469
     ],
     "INPUT_FOOTPRINT": [
       "",
       "str",
-      "/dev/shm/RijssenHolten/10_874_696/objects/NL.IMBAG.Pand.1742100000013892/crop/NL.IMBAG.Pand.1742100000013892.gpkg"
+      "/fastssd/data/3DBAG/crop_reconstruct/10/316/520/objects/NL.IMBAG.Pand.0599100000702017/crop/NL.IMBAG.Pand.0599100000702017.gpkg"
     ],
     "INPUT_POINTCLOUD": [
       "",
       "str",
-      "/dev/shm/RijssenHolten/10_874_696/objects/NL.IMBAG.Pand.1742100000013892/crop/NL.IMBAG.Pand.1742100000013892_AHN4.las"
+      "/fastssd/data/3DBAG/crop_reconstruct/10/316/520/objects/NL.IMBAG.Pand.0599100000702017/crop/NL.IMBAG.Pand.0599100000702017_AHN4.las"
     ],
     "OUTPUT_CRS": [
       "",
@@ -83,7 +83,7 @@
     "OUTPUT_JSONL": [
       "",
       "str",
-      "/dev/shm/RijssenHolten/10_874_696/objects/NL.IMBAG.Pand.1742100000013892/reconstruct/NL.IMBAG.Pand.1742100000013892.city.jsonl"
+      "/fastssd/data/3DBAG/crop_reconstruct/10/316/520/objects/NL.IMBAG.Pand.0599100000702017/reconstruct/NL.IMBAG.Pand.0599100000702017.city.jsonl"
     ],
     "U_SOURCE": [
       "",
@@ -608,30 +608,50 @@
         "CRS": "{{OUTPUT_CRS}}",
         "filepath": "{{OUTPUT_JSONL}}",
         "identifier_attribute": "identificatie",
-        "only_output_renamed": false,
+        "only_output_renamed": true,
         "output_attribute_names": {
-          "AttributeCalc.height": "height",
-          "DetectPlanes.roof_elevation_max": "h_dak_max",
-          "DetectPlanes.roof_elevation_min": "h_dak_min",
-          "DetectPlanes.roof_type": "dak_type",
-          "FeatureType.value": "feature_type",
-          "Ground_elevation.value": "h_maaiveld",
-          "OGRLoader.area": "area_m",
+          "DetectPlanes.roof_elevation_50p": "b3_h_dak_50p",
+          "DetectPlanes.roof_elevation_70p": "b3_h_dak_70p",
+          "DetectPlanes.roof_elevation_max": "b3_h_dak_max",
+          "DetectPlanes.roof_elevation_min": "b3_h_dak_min",
+          "DetectPlanes.roof_type": "b3_dak_type",
+          "Ground_elevation.value": "b3_h_maaiveld",
+          "OGRLoader.begingeldigheid": "begingeldigheid",
+          "OGRLoader.documentdatum": "documentdatum",
+          "OGRLoader.documentnummer": "documentnummer",
+          "OGRLoader.eindgeldigheid": "eindgeldigheid",
+          "OGRLoader.eindregistratie": "eindregistratie",
+          "OGRLoader.geconstateerd": "geconstateerd",
           "OGRLoader.identificatie": "identificatie",
-          "OGRLoader.pt_density": "pt_density",
-          "OGRLoader.r_nodata": "r_nodata",
-          "PC2MeshQuality-LoD12.mesh_error_f": "rmse_lod12",
-          "PC2MeshQuality-LoD13.mesh_error_f": "rmse_lod13",
-          "PC2MeshQuality-LoD22.mesh_error_f": "rmse_lod22",
-          "PolygonTriangulator-LoD12.volumes": "volume_lod12",
-          "PolygonTriangulator-LoD13.volumes": "volume_lod13",
-          "PolygonTriangulator-LoD22.volumes": "volume_lod22",
-          "SkipReplaceTester.skip": "reconstruction_skipped",
-          "Validator-LoD12.errors": "val3dity_codes_lod12",
-          "Validator-LoD13.errors": "val3dity_codes_lod13",
-          "Validator-LoD22.errors": "val3dity_codes_lod22",
-          "method.value": "reconstructie_methode",
-          "source.value": "pw_bron"
+          "OGRLoader.is_mutated_AHN3_AHN4": "b3_mutatie_ahn3_ahn4",
+          "OGRLoader.kas_warenhuis": "b3_kas_warenhuis",
+          "OGRLoader.nodata_frac_AHN3": "b3_nodata_fractie_ahn3",
+          "OGRLoader.nodata_frac_AHN4": "b3_nodata_fractie_ahn4",
+          "OGRLoader.nodata_r_AHN3": "b3_nodata_radius_ahn3",
+          "OGRLoader.nodata_r_AHN4": "b3_nodata_radius_ahn4",
+          "OGRLoader.oorspronkelijkbouwjaar": "oorspronkelijkbouwjaar",
+          "OGRLoader.pc_select": "b3_pw_selectie_reden",
+          "OGRLoader.pt_density_AHN3": "b3_puntdichtheid_ahn3",
+          "OGRLoader.pt_density_AHN4": "b3_puntdichtheid_ahn4",
+          "OGRLoader.status": "status",
+          "OGRLoader.tijdstipeindregistratielv": "tijdstipeindregistratielv",
+          "OGRLoader.tijdstipinactief": "tijdstipinactief",
+          "OGRLoader.tijdstipinactieflv": "tijdstipinactieflv",
+          "OGRLoader.tijdstipnietbaglv": "tijdstipnietbaglv",
+          "OGRLoader.tijdstipregistratie": "tijdstipregistratie",
+          "OGRLoader.tijdstipregistratielv": "tijdstipregistratielv",
+          "OGRLoader.voorkomenidentificatie": "voorkomenidentificatie",
+          "PC2MeshQuality-LoD12.mesh_error_f": "b3_rmse_lod12",
+          "PC2MeshQuality-LoD13.mesh_error_f": "b3_rmse_lod13",
+          "PC2MeshQuality-LoD22.mesh_error_f": "b3_rmse_lod22",
+          "PolygonTriangulator-LoD12.volumes": "b3_volume_lod12",
+          "PolygonTriangulator-LoD13.volumes": "b3_volume_lod13",
+          "PolygonTriangulator-LoD22.volumes": "b3_volume_lod22",
+          "SkipReplaceTester.skip": "b3_reconstructie_onvolledig",
+          "Validator-LoD12.errors": "b3_val3dity_lod12",
+          "Validator-LoD13.errors": "b3_val3dity_lod13",
+          "Validator-LoD22.errors": "b3_val3dity_lod22",
+          "source.value": "b3_pw_bron"
         },
         "prettyPrint": false,
         "scale_x": "{{CITYJSON_SCALE_X}}",
@@ -642,8 +662,8 @@
         "translate_z": "{{CITYJSON_TRANSLATE_Z}}"
       },
       "position": [
-        4683.0,
-        443.0
+        4605.0,
+        348.0
       ],
       "type": [
         "CoreIO",
@@ -736,6 +756,18 @@
           [
             "SegmentRasterise",
             "pts_per_roofplane"
+          ]
+        ],
+        "roof_elevation_50p": [
+          [
+            "CityJSONFeatureWriter",
+            "attributes"
+          ]
+        ],
+        "roof_elevation_70p": [
+          [
+            "CityJSONFeatureWriter",
+            "attributes"
           ]
         ],
         "roof_elevation_max": [
@@ -1924,30 +1956,6 @@
         "Validator"
       ]
     },
-    "method": {
-      "connections": {
-        "value": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
-      },
-      "marked_outputs": {
-        "value": false
-      },
-      "parameters": {
-        "value": "geoflow"
-      },
-      "position": [
-        4613.0,
-        240.0
-      ],
-      "type": [
-        "Core",
-        "Text"
-      ]
-    },
     "source": {
       "connections": {
         "value": [
@@ -1988,8 +1996,8 @@
         "value": "{{U_SURVEY_DATE}}"
       },
       "position": [
-        4614.0,
-        71.0
+        4610.0,
+        64.0
       ],
       "type": [
         "Core",
