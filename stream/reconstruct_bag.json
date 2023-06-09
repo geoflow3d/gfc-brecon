@@ -8,17 +8,17 @@
     "CITYJSON_SCALE_X": [
       "",
       "float",
-      0.0010000000474974513
+      9.999999747378752e-05
     ],
     "CITYJSON_SCALE_Y": [
       "",
       "float",
-      0.0010000000474974513
+      9.999999747378752e-05
     ],
     "CITYJSON_SCALE_Z": [
       "",
       "float",
-      0.0010000000474974513
+      9.999999747378752e-05
     ],
     "CITYJSON_TRANSLATE_X": [
       "",
@@ -183,17 +183,17 @@
     "thres_reg_line_dist": [
       "",
       "float",
-      0.800000011920929
+      0.5
     ],
     "thres_reg_line_ext": [
       "",
       "float",
-      3.0
+      1.5
     ],
     "thres_tri_snap": [
       "",
       "float",
-      0.019999999552965164
+      0.05000000074505806
     ],
     "thres_triangulate_snap": [
       "",
@@ -1407,7 +1407,8 @@
       },
       "parameters": {
         "dupe_threshold_exp": 4,
-        "output_all_triangles": false
+        "output_all_triangles": false,
+        "output_mtc_for_every_input": false
       },
       "position": [
         2759.0,
@@ -1451,7 +1452,8 @@
       },
       "parameters": {
         "dupe_threshold_exp": "{{thres_triangulate_snap}}",
-        "output_all_triangles": false
+        "output_all_triangles": false,
+        "output_mtc_for_every_input": false
       },
       "position": [
         3545.0,
@@ -1495,7 +1497,8 @@
       },
       "parameters": {
         "dupe_threshold_exp": "{{thres_triangulate_snap}}",
-        "output_all_triangles": false
+        "output_all_triangles": false,
+        "output_mtc_for_every_input": false
       },
       "position": [
         3543.1728515625,
@@ -1539,7 +1542,8 @@
       },
       "parameters": {
         "dupe_threshold_exp": "{{thres_triangulate_snap}}",
-        "output_all_triangles": false
+        "output_all_triangles": false,
+        "output_mtc_for_every_input": false
       },
       "position": [
         3528.1728515625,
