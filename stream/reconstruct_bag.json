@@ -3,7 +3,7 @@
     "BID": [
       "Building identifier",
       "str",
-      "NL.IMBAG.Pand.0599100000702017"
+      "NL.IMBAG.Pand.0579100000001517"
     ],
     "CITYJSON_SCALE_X": [
       "",
@@ -48,12 +48,12 @@
     "GF_PROCESS_OFFSET_X": [
       "offset in X coordinate",
       "float",
-      92721.7265625
+      93219.484375
     ],
     "GF_PROCESS_OFFSET_Y": [
       "offset in Y coordinate",
       "float",
-      437138.8125
+      466684.90625
     ],
     "GF_PROCESS_OFFSET_Z": [
       "offset in Z coordinate",
@@ -63,17 +63,17 @@
     "GROUND_ELEVATION": [
       "",
       "float",
-      -4.083000183105469
+      0.3050000071525574
     ],
     "INPUT_FOOTPRINT": [
       "",
       "str",
-      "/fastssd/data/3DBAG/crop_reconstruct/10/316/520/objects/NL.IMBAG.Pand.0599100000702017/crop/NL.IMBAG.Pand.0599100000702017.gpkg"
+      "/mnt/Data/LocalData/temp/yoc-2022-low-coverage/0/objects/NL.IMBAG.Pand.0579100000001517/crop/NL.IMBAG.Pand.0579100000001517.gpkg"
     ],
     "INPUT_POINTCLOUD": [
       "",
       "str",
-      "/fastssd/data/3DBAG/crop_reconstruct/10/316/520/objects/NL.IMBAG.Pand.0599100000702017/crop/NL.IMBAG.Pand.0599100000702017_AHN4.las"
+      "/mnt/Data/LocalData/temp/yoc-2022-low-coverage/0/objects/NL.IMBAG.Pand.0579100000001517/crop/NL.IMBAG.Pand.0579100000001517_AHN3.las"
     ],
     "OUTPUT_CRS": [
       "",
@@ -83,17 +83,7 @@
     "OUTPUT_JSONL": [
       "",
       "str",
-      "/fastssd/data/3DBAG/crop_reconstruct/10/316/520/objects/NL.IMBAG.Pand.0599100000702017/reconstruct/NL.IMBAG.Pand.0599100000702017.city.jsonl"
-    ],
-    "U_SOURCE": [
-      "",
-      "str",
-      "AHN4"
-    ],
-    "U_SURVEY_DATE": [
-      "",
-      "str",
-      "2020"
+      "/mnt/Data/LocalData/temp/yoc-2022-low-coverage/0/objects/NL.IMBAG.Pand.0579100000001517/reconstruct/_NL.IMBAG.Pand.0579100000001517.city.jsonl"
     ],
     "clip_ground": [
       "",
@@ -103,7 +93,7 @@
     "line_detect__epsilon": [
       "",
       "float",
-      0.4000000059604645
+      1.0
     ],
     "lod13__step_height": [
       "",
@@ -128,7 +118,7 @@
     "plane_detect__epsilon": [
       "",
       "float",
-      0.20000000298023224
+      0.30000001192092896
     ],
     "plane_detect__k": [
       "",
@@ -178,17 +168,17 @@
     "thres_alpha": [
       "",
       "float",
-      0.3499999940395355
+      0.25
     ],
     "thres_reg_line_dist": [
       "",
       "float",
-      0.5
+      0.800000011920929
     ],
     "thres_reg_line_ext": [
       "",
       "float",
-      1.5
+      3.0
     ],
     "thres_tri_snap": [
       "",
@@ -531,11 +521,11 @@
       "connections": {
         "result": [
           [
-            "AlphaShape-ground",
+            "AlphaShape",
             "skip"
           ],
           [
-            "AlphaShape",
+            "AlphaShape-ground",
             "skip"
           ],
           [
@@ -631,6 +621,7 @@
           "OGRLoader.nodata_r_AHN4": "b3_nodata_radius_ahn4",
           "OGRLoader.oorspronkelijkbouwjaar": "oorspronkelijkbouwjaar",
           "OGRLoader.pc_select": "b3_pw_selectie_reden",
+          "OGRLoader.pc_year": "b3_pw_datum",
           "OGRLoader.pt_density_AHN3": "b3_puntdichtheid_ahn3",
           "OGRLoader.pt_density_AHN4": "b3_puntdichtheid_ahn4",
           "OGRLoader.status": "status",
@@ -650,8 +641,7 @@
           "SkipReplaceTester.skip": "b3_reconstructie_onvolledig",
           "Validator-LoD12.errors": "b3_val3dity_lod12",
           "Validator-LoD13.errors": "b3_val3dity_lod13",
-          "Validator-LoD22.errors": "b3_val3dity_lod22",
-          "source.value": "b3_pw_bron"
+          "Validator-LoD22.errors": "b3_val3dity_lod22"
         },
         "prettyPrint": false,
         "scale_x": "{{CITYJSON_SCALE_X}}",
@@ -1954,54 +1944,6 @@
       "type": [
         "Val3dity",
         "Validator"
-      ]
-    },
-    "source": {
-      "connections": {
-        "value": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
-      },
-      "marked_outputs": {
-        "value": false
-      },
-      "parameters": {
-        "value": "{{U_SOURCE}}"
-      },
-      "position": [
-        4612.0,
-        108.0
-      ],
-      "type": [
-        "Core",
-        "Text"
-      ]
-    },
-    "survey_date": {
-      "connections": {
-        "value": [
-          [
-            "CityJSONFeatureWriter",
-            "attributes"
-          ]
-        ]
-      },
-      "marked_outputs": {
-        "value": false
-      },
-      "parameters": {
-        "value": "{{U_SURVEY_DATE}}"
-      },
-      "position": [
-        4610.0,
-        64.0
-      ],
-      "type": [
-        "Core",
-        "Text"
       ]
     }
   }
