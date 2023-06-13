@@ -3,7 +3,7 @@
     "BID": [
       "Building identifier",
       "str",
-      "NL.IMBAG.Pand.0579100000001517"
+      "NL.IMBAG.Pand.1676100000437038"
     ],
     "CITYJSON_SCALE_X": [
       "",
@@ -48,12 +48,12 @@
     "GF_PROCESS_OFFSET_X": [
       "offset in X coordinate",
       "float",
-      93219.484375
+      37470.0
     ],
     "GF_PROCESS_OFFSET_Y": [
       "offset in Y coordinate",
       "float",
-      466684.90625
+      414780.5
     ],
     "GF_PROCESS_OFFSET_Z": [
       "offset in Z coordinate",
@@ -63,17 +63,17 @@
     "GROUND_ELEVATION": [
       "",
       "float",
-      0.3050000071525574
+      6.244999885559082
     ],
     "INPUT_FOOTPRINT": [
       "",
       "str",
-      "/mnt/Data/LocalData/temp/yoc-2022-low-coverage/0/objects/NL.IMBAG.Pand.0579100000001517/crop/NL.IMBAG.Pand.0579100000001517.gpkg"
+      "/mnt/Data/LocalData/temp/one/crop/NL.IMBAG.Pand.1676100000437038.gpkg"
     ],
     "INPUT_POINTCLOUD": [
       "",
       "str",
-      "/mnt/Data/LocalData/temp/yoc-2022-low-coverage/0/objects/NL.IMBAG.Pand.0579100000001517/crop/NL.IMBAG.Pand.0579100000001517_AHN3.las"
+      "/mnt/Data/LocalData/temp/one/crop/NL.IMBAG.Pand.1676100000437038_AHN3.las"
     ],
     "OUTPUT_CRS": [
       "",
@@ -83,7 +83,7 @@
     "OUTPUT_JSONL": [
       "",
       "str",
-      "/mnt/Data/LocalData/temp/yoc-2022-low-coverage/0/objects/NL.IMBAG.Pand.0579100000001517/reconstruct/_NL.IMBAG.Pand.0579100000001517.city.jsonl"
+      "/mnt/Data/LocalData/temp/one/reconstruct/NL.IMBAG.Pand.1676100000437038.city.jsonl"
     ],
     "clip_ground": [
       "",
@@ -621,6 +621,7 @@
           "OGRLoader.nodata_r_AHN4": "b3_nodata_radius_ahn4",
           "OGRLoader.oorspronkelijkbouwjaar": "oorspronkelijkbouwjaar",
           "OGRLoader.pc_select": "b3_pw_selectie_reden",
+          "OGRLoader.pc_source": "b3_pw_bron",
           "OGRLoader.pc_year": "b3_pw_datum",
           "OGRLoader.pt_density_AHN3": "b3_puntdichtheid_ahn3",
           "OGRLoader.pt_density_AHN4": "b3_puntdichtheid_ahn4",
@@ -728,6 +729,10 @@
             "ipoints"
           ],
           [
+            "SegmentRasterise",
+            "pts_per_roofplane"
+          ],
+          [
             "PC2MeshQuality-LoD13",
             "ipoints"
           ],
@@ -741,10 +746,6 @@
           ],
           [
             "PlaneIntersect",
-            "pts_per_roofplane"
-          ],
-          [
-            "SegmentRasterise",
             "pts_per_roofplane"
           ]
         ],
