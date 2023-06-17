@@ -193,7 +193,7 @@
     "thres_val3dity_d2p": [
       "",
       "float",
-      9.999999747378752e-06
+      0.0010000000474974513
     ]
   },
   "nodes": {
@@ -521,11 +521,11 @@
       "connections": {
         "result": [
           [
-            "AlphaShape",
+            "AlphaShape-ground",
             "skip"
           ],
           [
-            "AlphaShape-ground",
+            "AlphaShape",
             "skip"
           ],
           [
