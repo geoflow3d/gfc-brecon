@@ -729,10 +729,6 @@
             "ipoints"
           ],
           [
-            "SegmentRasterise",
-            "pts_per_roofplane"
-          ],
-          [
             "PC2MeshQuality-LoD13",
             "ipoints"
           ],
@@ -746,6 +742,10 @@
           ],
           [
             "PlaneIntersect",
+            "pts_per_roofplane"
+          ],
+          [
+            "SegmentRasterise",
             "pts_per_roofplane"
           ]
         ],
@@ -815,21 +815,22 @@
         "is_wall": false,
         "plane_adj": false,
         "plane_id": false,
-        "planes": false,
         "pts_per_roofplane": false,
         "roof_elevation_50p": false,
         "roof_elevation_70p": false,
         "roof_elevation_max": false,
         "roof_elevation_min": false,
-        "roof_pt_cnt": true,
+        "roof_pt_cnt": false,
         "roof_type": false,
         "slant_roofplane_cnt": false,
-        "total_roofplane_cnt": true,
-        "unsegmented_pt_cnt": true,
-        "wall_pt_cnt": true
+        "total_roofplane_cnt": false,
+        "unsegmented_pt_cnt": false,
+        "wall_pt_cnt": false
       },
       "parameters": {
         "horiz_min_count": 0.949999988079071,
+        "maximum_angle": 25.0,
+        "maximum_offset": 0.5,
         "metrics_cluster_epsilon_ransac": 0.20000000298023224,
         "metrics_is_horizontal_threshold": 0.9700000286102295,
         "metrics_is_wall_threshold": 0.30000001192092896,
@@ -840,7 +841,10 @@
         "metrics_plane_normal_threshold": "{{plane_detect__normal_angle}}",
         "metrics_probability_ransac": 0.05000000074505806,
         "n_refit": 5,
-        "only_horizontal": false,
+        "regularize_axis_symmetry": false,
+        "regularize_coplanarity": false,
+        "regularize_orthogonality": false,
+        "regularize_parallelism": false,
         "use_ransac": "{{plane_detect_ransac}}"
       },
       "position": [
@@ -874,7 +878,6 @@
         "is_wall": false,
         "plane_adj": false,
         "plane_id": false,
-        "planes": false,
         "pts_per_roofplane": false,
         "roof_elevation_50p": false,
         "roof_elevation_70p": false,
@@ -889,6 +892,8 @@
       },
       "parameters": {
         "horiz_min_count": 0.949999988079071,
+        "maximum_angle": 25.0,
+        "maximum_offset": 0.5,
         "metrics_cluster_epsilon_ransac": 0.20000000298023224,
         "metrics_is_horizontal_threshold": 0.9700000286102295,
         "metrics_is_wall_threshold": 0.30000001192092896,
@@ -899,7 +904,10 @@
         "metrics_plane_normal_threshold": 0.75,
         "metrics_probability_ransac": 0.05000000074505806,
         "n_refit": 50,
-        "only_horizontal": true,
+        "regularize_axis_symmetry": false,
+        "regularize_coplanarity": false,
+        "regularize_orthogonality": false,
+        "regularize_parallelism": false,
         "use_ransac": "{{plane_detect_ransac}}"
       },
       "position": [
