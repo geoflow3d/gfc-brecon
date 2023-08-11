@@ -1508,7 +1508,7 @@
       },
       "parameters": {
         "base_elevation": 0.0,
-        "feature_select": "{{input_footprint_select}}",
+        "attribute_filter": "fid=={{input_footprint_select}}",
         "filepath": "{{input_footprint}}",
         "layer_id": 0
       },
