@@ -10,10 +10,10 @@
       "str",
       ""
     ],
-    "input_footprint_select": [
-      "Feature number to load (value must be in the range 1 to number of features in foootprint input)",
-      "int",
-      1
+    "input_footprint_select_sql": [
+      "OGR SQL statement to select one input footprint from the input_footprint file, eg \"fid=47\"",
+      "str",
+      "fid=47"
     ],
     "input_pointcloud": [
       "Input pointcloud. Should contain building (6) and ground class (2)",
@@ -424,6 +424,7 @@
         "arrangement": false,
         "global_elevation_50p": true,
         "global_elevation_70p": true,
+        "global_elevation_97p": false,
         "global_elevation_max": true,
         "global_elevation_min": true
       },
@@ -465,6 +466,7 @@
         "arrangement": false,
         "global_elevation_50p": false,
         "global_elevation_70p": false,
+        "global_elevation_97p": false,
         "global_elevation_max": false,
         "global_elevation_min": false
       },
@@ -506,6 +508,7 @@
         "arrangement": false,
         "global_elevation_50p": false,
         "global_elevation_70p": false,
+        "global_elevation_97p": false,
         "global_elevation_max": false,
         "global_elevation_min": false
       },
@@ -550,6 +553,7 @@
         "do_floor": true,
         "do_roofs": true,
         "do_walls": true,
+        "lod1_extrude_to_max": false,
         "snap_tolerance_exp": 4
       },
       "position": [
@@ -585,6 +589,7 @@
         "do_floor": true,
         "do_roofs": true,
         "do_walls": true,
+        "lod1_extrude_to_max": false,
         "snap_tolerance_exp": 4
       },
       "position": [
@@ -620,6 +625,7 @@
         "do_floor": true,
         "do_roofs": true,
         "do_walls": true,
+        "lod1_extrude_to_max": false,
         "snap_tolerance_exp": 4
       },
       "position": [
@@ -817,6 +823,7 @@
         "part_attributes": false
       },
       "parameters": {
+        "CRS": "EPSG:7415",
         "filepath": "{{output_cityjson}}",
         "identifier_attribute": "{{building_identifier}}",
         "meta_identifier": "{{output_cj_identifier}}",
@@ -829,11 +836,9 @@
         "meta_referenceDate": "{{output_cj_referenceDate}}",
         "meta_referenceSystem": "{{output_cj_referenceSystem}}",
         "meta_title": "{{output_cj_title}}",
+        "only_output_renamed": false,
         "output_attribute_names": {},
-        "prettyPrint": false,
-        "skip_LoD12": false,
-        "skip_LoD13": false,
-        "skip_LoD22": false
+        "prettyPrint": false
       },
       "position": [
         4553.0,
@@ -1050,21 +1055,23 @@
         "is_wall": false,
         "plane_adj": false,
         "plane_id": false,
-        "planes": false,
         "pts_per_roofplane": false,
         "roof_elevation_50p": false,
         "roof_elevation_70p": false,
         "roof_elevation_max": false,
         "roof_elevation_min": false,
-        "roof_pt_cnt": true,
+        "roof_pt_cnt": false,
         "roof_type": false,
         "slant_roofplane_cnt": false,
-        "total_roofplane_cnt": true,
-        "unsegmented_pt_cnt": true,
-        "wall_pt_cnt": true
+        "total_roofplane_cnt": false,
+        "unsegmented_pt_cnt": false,
+        "wall_pt_cnt": false
       },
       "parameters": {
         "horiz_min_count": 0.949999988079071,
+        "maximum_angle": 25.0,
+        "maximum_offset": 0.5,
+        "metrics_cluster_epsilon_ransac": 0.30000001192092896,
         "metrics_is_horizontal_threshold": 0.9700000286102295,
         "metrics_is_wall_threshold": 0.30000001192092896,
         "metrics_normal_k": "{{r_normal_k}}",
@@ -1072,8 +1079,13 @@
         "metrics_plane_k": "{{r_plane_k}}",
         "metrics_plane_min_points": "{{r_plane_min_points}}",
         "metrics_plane_normal_threshold": 0.75,
+        "metrics_probability_ransac": 0.05000000074505806,
         "n_refit": 5,
-        "only_horizontal": false
+        "regularize_axis_symmetry": false,
+        "regularize_coplanarity": false,
+        "regularize_orthogonality": false,
+        "regularize_parallelism": false,
+        "use_ransac": false
       },
       "position": [
         915.0,
@@ -1106,7 +1118,6 @@
         "is_wall": false,
         "plane_adj": false,
         "plane_id": false,
-        "planes": false,
         "pts_per_roofplane": false,
         "roof_elevation_50p": false,
         "roof_elevation_70p": false,
@@ -1121,6 +1132,9 @@
       },
       "parameters": {
         "horiz_min_count": 0.949999988079071,
+        "maximum_angle": 25.0,
+        "maximum_offset": 0.5,
+        "metrics_cluster_epsilon_ransac": 0.30000001192092896,
         "metrics_is_horizontal_threshold": 0.9700000286102295,
         "metrics_is_wall_threshold": 0.30000001192092896,
         "metrics_normal_k": "{{r_normal_k}}",
@@ -1128,8 +1142,13 @@
         "metrics_plane_k": "{{r_plane_k}}",
         "metrics_plane_min_points": "{{r_plane_min_points}}",
         "metrics_plane_normal_threshold": 0.75,
+        "metrics_probability_ransac": 0.05000000074505806,
         "n_refit": 10,
-        "only_horizontal": true
+        "regularize_axis_symmetry": false,
+        "regularize_coplanarity": false,
+        "regularize_orthogonality": false,
+        "regularize_parallelism": false,
+        "use_ransac": false
       },
       "position": [
         918.0,
@@ -1286,15 +1305,24 @@
       },
       "marked_outputs": {
         "ground_elevations": false,
-        "point_clouds": false
+        "point_clouds": false,
+        "poly_areas": false,
+        "poly_densities": false,
+        "poly_pt_counts_bld": false,
+        "poly_pt_counts_grd": false,
+        "poly_ptcoverage_class": false
       },
       "parameters": {
+        "Max_density_delta": 0.05000000074505806,
         "buffer": 1.0,
         "building_class": 6,
         "cellsize": 50.0,
+        "clear_if_insufficient": true,
+        "coverage_threshold": 2.0,
         "ground_class": 2,
         "ground_percentile": 0.05000000074505806,
-        "las_filepaths": "{{input_pointcloud}}"
+        "las_filepaths": "{{input_pointcloud}}",
+        "wkt": ""
       },
       "position": [
         385.0,
@@ -1504,13 +1532,16 @@
         "attributes": false,
         "is_valid": false,
         "line_strings": false,
-        "linear_rings": false
+        "linear_rings": false,
+        "wkt": false
       },
       "parameters": {
+        "attribute_filter": "{{input_footprint_select_sql}}",
         "base_elevation": 0.0,
-        "feature_select": "{{input_footprint_select}}",
         "filepath": "{{input_footprint}}",
-        "layer_id": 0
+        "layer_id": 0,
+        "layer_name": "",
+        "output_fid": false
       },
       "position": [
         455.5,
@@ -1527,13 +1558,16 @@
         "geometries": false
       },
       "parameters": {
+        "CRS": "EPSG:7415",
         "create_directories": true,
-        "epsg": "{{output_ogr_EPSG}}",
+        "do_transactions": false,
         "filepath": "{{output_ogr}}",
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD11",
+        "only_output_mapped_attrs": false,
         "output_attribute_names": {},
-        "overwrite": "{{output_ogr_overwrite}}",
+        "overwrite_file": false,
+        "overwrite_layer": false,
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1552,13 +1586,16 @@
         "geometries": false
       },
       "parameters": {
+        "CRS": "EPSG:7415",
         "create_directories": true,
-        "epsg": "{{output_ogr_EPSG}}",
+        "do_transactions": false,
         "filepath": "{{output_ogr}}",
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD12",
+        "only_output_mapped_attrs": false,
         "output_attribute_names": {},
-        "overwrite": "{{output_ogr_overwrite}}",
+        "overwrite_file": false,
+        "overwrite_layer": false,
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1577,13 +1614,16 @@
         "geometries": false
       },
       "parameters": {
+        "CRS": "EPSG:7415",
         "create_directories": true,
-        "epsg": "{{output_ogr_EPSG}}",
+        "do_transactions": false,
         "filepath": "{{output_ogr}}",
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD12_3D",
+        "only_output_mapped_attrs": false,
         "output_attribute_names": {},
-        "overwrite": "{{output_ogr_overwrite}}",
+        "overwrite_file": false,
+        "overwrite_layer": false,
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1602,13 +1642,16 @@
         "geometries": false
       },
       "parameters": {
+        "CRS": "EPSG:7415",
         "create_directories": true,
-        "epsg": "{{output_ogr_EPSG}}",
+        "do_transactions": false,
         "filepath": "{{output_ogr}}",
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD13",
+        "only_output_mapped_attrs": false,
         "output_attribute_names": {},
-        "overwrite": "{{output_ogr_overwrite}}",
+        "overwrite_file": false,
+        "overwrite_layer": false,
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1627,13 +1670,16 @@
         "geometries": false
       },
       "parameters": {
+        "CRS": "EPSG:7415",
         "create_directories": true,
-        "epsg": "{{output_ogr_EPSG}}",
+        "do_transactions": false,
         "filepath": "{{output_ogr}}",
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD13_3D",
+        "only_output_mapped_attrs": false,
         "output_attribute_names": {},
-        "overwrite": "{{output_ogr_overwrite}}",
+        "overwrite_file": false,
+        "overwrite_layer": false,
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1652,13 +1698,16 @@
         "geometries": false
       },
       "parameters": {
+        "CRS": "EPSG:7415",
         "create_directories": true,
-        "epsg": "{{output_ogr_EPSG}}",
+        "do_transactions": false,
         "filepath": "{{output_ogr}}",
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD22",
+        "only_output_mapped_attrs": false,
         "output_attribute_names": {},
-        "overwrite": "{{output_ogr_overwrite}}",
+        "overwrite_file": false,
+        "overwrite_layer": false,
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1677,13 +1726,16 @@
         "geometries": false
       },
       "parameters": {
+        "CRS": "EPSG:7415",
         "create_directories": true,
-        "epsg": "{{output_ogr_EPSG}}",
+        "do_transactions": false,
         "filepath": "{{output_ogr}}",
         "gdaldriver": "{{output_ogr_format}}",
         "layername": "LoD22_3D",
+        "only_output_mapped_attrs": false,
         "output_attribute_names": {},
-        "overwrite": "{{output_ogr_overwrite}}",
+        "overwrite_file": false,
+        "overwrite_layer": false,
         "require_attributes": true,
         "transaction_batch_size_": 1000
       },
@@ -1887,6 +1939,7 @@
       },
       "parameters": {
         "min_dist_to_line": 1.0,
+        "min_length": 0.0,
         "min_neighb_pts": 5
       },
       "position": [
@@ -1992,6 +2045,8 @@
         "simplified_polygons": false
       },
       "parameters": {
+        "orient_after_simplify": true,
+        "output_failures": true,
         "tolerance": 0.009999999776482582
       },
       "position": [
@@ -2033,11 +2088,13 @@
         "multi_triangle_collections": true,
         "normals": false,
         "ring_ids": false,
-        "triangles": false
+        "triangles": false,
+        "volumes": false
       },
       "parameters": {
         "dupe_threshold_exp": 4,
-        "output_all_triangles": false
+        "output_all_triangles": false,
+        "output_mtc_for_every_input": false
       },
       "position": [
         3545.0,
@@ -2078,11 +2135,13 @@
         "multi_triangle_collections": true,
         "normals": false,
         "ring_ids": false,
-        "triangles": false
+        "triangles": false,
+        "volumes": false
       },
       "parameters": {
         "dupe_threshold_exp": 4,
-        "output_all_triangles": false
+        "output_all_triangles": false,
+        "output_mtc_for_every_input": false
       },
       "position": [
         3537.1728515625,
@@ -2123,11 +2182,13 @@
         "multi_triangle_collections": true,
         "normals": false,
         "ring_ids": false,
-        "triangles": false
+        "triangles": false,
+        "volumes": false
       },
       "parameters": {
         "dupe_threshold_exp": 4,
-        "output_all_triangles": false
+        "output_all_triangles": false,
+        "output_mtc_for_every_input": false
       },
       "position": [
         3528.1728515625,
@@ -2157,6 +2218,7 @@
         "edges_out_": false,
         "exact_footprint_out": false,
         "exact_regularised_edges": false,
+        "n_angle_clusters": false,
         "priorities": false,
         "regularised_edges": false
       },
