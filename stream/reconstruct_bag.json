@@ -633,6 +633,7 @@
           "OGRLoader.tijdstipregistratie": "tijdstipregistratie",
           "OGRLoader.tijdstipregistratielv": "tijdstipregistratielv",
           "OGRLoader.voorkomenidentificatie": "voorkomenidentificatie",
+          "OGRLoader.b3_bag_bag_overlap": "b3_bag_bag_overlap",
           "PC2MeshQuality-LoD12.mesh_error_f": "b3_rmse_lod12",
           "PC2MeshQuality-LoD13.mesh_error_f": "b3_rmse_lod13",
           "PC2MeshQuality-LoD22.mesh_error_f": "b3_rmse_lod22",
